@@ -1,0 +1,212 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --main-color: rgba(255, 80, 95, 0.74);
+}
+
+body {
+  background-color: var(--main-color);
+}
+
+/* Mobile First */
+@media screen and (max-width: 720px) {
+  /* Document and body */
+  html,
+  body,
+  #root,
+  .app {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  .tab {
+    height: 80vh;
+    display: grid;
+  }
+
+  /* Footer */
+
+  footer {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  /* Menues container */
+  #menues-div {
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Menu container */
+  .menu {
+    height: 100%;
+    width: 16vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* User Menu (Log/Sign in) */
+  .user img {
+    height: 90%;
+  }
+
+  /* Hamburguer menu */
+
+  /* Hamburguer toggler */
+  #menu-toggler {
+    height: 5vh;
+    width: 5vh;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  /* Lines container */
+  .hamburguer {
+    height: 5vh;
+    width: 5vh;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hamburguer lines */
+  .hamburguer > span {
+    width: 100%;
+    height: 2px;
+    position: relative;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  .hamburguer span::before,
+  .hamburguer span::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: -10px;
+    background-color: white;
+  }
+
+  .hamburguer span::after {
+    top: 10px;
+  }
+
+  #menu-toggler:checked + .hamburguer > span {
+    transform: rotate(135deg);
+  }
+
+  #menu-toggler:checked + .hamburguer > span::before,
+  #menu-toggler:checked + .hamburguer > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+
+  /* Landing tab */
+  .landing {
+    grid-auto-rows: min-content 1fr 2fr;
+  }
+
+  #main-button-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 2vh 2vw;
+  }
+
+  #app-logo {
+    width: 100%;
+  }
+
+  #home-icon {
+    height: 10vh;
+  }
+
+  #arrow-btn {
+    width: 30%;
+    margin-top: 1vh;
+  }
+
+  /* Carousel */
+  #carousel-wrapper {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  #carousel {
+    /* snap! */
+    display: inherit;
+    width: 100vw;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    /* snap! */
+  }
+
+  #carousel .page {
+    /* snap! */
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    /* snap! */
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+  }
+
+  #carousel .page img {
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+  }
+
+  #carousel-control {
+    display: inherit;
+    justify-content: space-evenly;
+    margin-top: 2vh;
+  }
+
+  #carousel-control .arrow {
+    width: 5vw;
+  }
+
+  /* Log in and Sign up - Provisory */
+  .log-in,
+  .sign-up {
+    margin: 5vh 5vw;
+    padding: 5vh 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  /* TBA */
+}
