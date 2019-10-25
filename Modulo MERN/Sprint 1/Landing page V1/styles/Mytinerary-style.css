@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --main-color: rgba(255, 80, 95, 0.74);
+}
+
+body {
+  background-color: var(--main-color);
+}
+
+/* Mobile First */
+@media screen and (max-width: 720px) {
+  /* Document and body */
+  html,
+  body,
+  #root,
+  .app {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  .tab {
+    height: 90%;
+    display: grid;
+  }
+
+  /* Footer */
+
+  footer {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  /* Landing tab */
+  .landing {
+    grid-auto-rows: min-content auto auto;
+  }
+
+  #main-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #main-button-container > h3 {
+    margin-top: 1em;
+  }
+
+  #home-icon {
+    height: 10vh;
+  }
+
+  #app-logo {
+    width: 100%;
+  }
+
+  #arrow-btn {
+    width: 50%;
+  }
+
+  #forms-nav-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+
+  #forms-nav-container > h3 {
+    grid-column: 1 / 3;
+  }
+
+  #forms-nav-container > a {
+    display: inline;
+  }
+
+  /* Log in and Sign up - Provisory */
+
+  .log-in,
+  .sign-up {
+    margin: 5vh 5vw;
+    padding: 5vh 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  /* TBA */
+}
