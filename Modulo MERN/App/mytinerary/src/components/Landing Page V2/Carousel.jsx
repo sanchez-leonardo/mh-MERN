@@ -1,7 +1,7 @@
 import React from 'react';
-import CountryImg from '../images/country-placeholder.webp';
-import LeftArrow from '../images/left-arrow.png';
-import RightArrow from '../images/right-arrow.png';
+import CountryImg from '../../images/country-placeholder.webp';
+import LeftArrow from '../../images/left-arrow.png';
+import RightArrow from '../../images/right-arrow.png';
 
 const Carousel = () => {
   return (

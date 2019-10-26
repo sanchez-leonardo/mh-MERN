@@ -1,8 +1,8 @@
 import React from 'react';
-
+// Para direccionar a log in o sign up
 // import { NavLink } from 'react-router-dom';
 
-import UserIcon from '../images/user.png';
+import UserIcon from '../../images/user.png';
 
 const UserMenu = () => {
   return (

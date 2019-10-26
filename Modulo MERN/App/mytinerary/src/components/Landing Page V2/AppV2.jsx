@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import UserMenu from './components/UserMenu';
-import Hamburguer from './components/Hamburguer';
-import LandingTabV2 from './components/LandingTabV2';
-import Cities from './components/Cities';
-import LogIn from './components/LogIn';
-import SignUp from './components/SignUp';
-import Footer from './components/Footer';
+import UserMenu from './UserMenu';
+import Hamburguer from './Hamburguer';
+import LandingTabV2 from './LandingTabV2';
+import Cities from '../Cities';
+import LogIn from '../LogIn';
+import SignUp from '../SignUp';
+import Footer from '../Footer';
 
-import './styles/Mytinerary-styleV2.css';
+import '../../styles/Mytinerary-styleV2.css';
 
 class App extends Component {
   state = {};
