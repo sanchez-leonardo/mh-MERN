@@ -145,8 +145,20 @@ body {
     width: 30%;
     margin-top: 1vh;
   }
+  /* Carousel reactstrap */
+  .slide {
+    width: 100vw;
+  }
 
-  /* Carousel */
+  .slide img {
+    width: 100%;
+  }
+
+  ol.carousel-indicators{
+    margin-bottom: 0;
+  }
+
+  /* Carousel CSS
   #carousel-wrapper {
     width: 100vw;
     height: 100%;
@@ -156,23 +168,23 @@ body {
   }
 
   #carousel {
-    /* snap! */
+    snap!
     display: inherit;
     width: 100vw;
     overflow: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    /* snap! */
+    snap!
   }
 
   #carousel .page {
-    /* snap! */
+    snap!
     flex-shrink: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     -webkit-overflow-scrolling: touch;
     width: 100%;
-    /* snap! */
+    snap!
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
   }
@@ -192,6 +204,7 @@ body {
   #carousel-control .arrow {
     width: 5vw;
   }
+   */
 
   /* Log in and Sign up - Provisory */
   .log-in,

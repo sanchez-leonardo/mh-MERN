@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Carousel from './Carousel';
+import CitiesCarousel from './Carousel';
 
 import Arrow from '../../images/circled-right-2.png';
 import Logo from '../../images/MYtineraryLogo.png';
@@ -19,7 +19,7 @@ const LandingTab = () => {
           <img id='arrow-btn' src={Arrow} alt='In Button' />
         </NavLink>
       </div>
-      <Carousel />
+      <CitiesCarousel />
     </section>
   );
 };

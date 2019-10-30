@@ -13,7 +13,10 @@ import Footer from '../Footer';
 import '../../styles/Mytinerary-styleV2.css';
 
 class App extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {}
+  }
 
   render() {
     return (
