@@ -66,7 +66,6 @@ body {
   }
 
   /* Hamburguer menu */
-
   /* Hamburguer toggler */
   #menu-toggler {
     height: 5vh;
@@ -146,15 +145,15 @@ body {
     margin-top: 1vh;
   }
   /* Carousel reactstrap */
-  .slide {
+  .carousel {
     width: 100vw;
   }
 
-  .slide img {
-    width: 100%;
+  .carousel-item > img {
+    width: 100vw;
   }
 
-  ol.carousel-indicators{
+  ol.carousel-indicators {
     margin-bottom: 0;
   }
 
