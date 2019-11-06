@@ -25,6 +25,11 @@ body {
     overflow: hidden;
   }
 
+  section{
+    height: inherit;
+    overflow: auto;
+  }
+
   .tab {
     height: 80vh;
     display: grid;
