@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import CitiesCarousel from './Carousel';
 
-import Arrow from '../../images/circled-right-2.png';
-import Logo from '../../images/MYtineraryLogo.png';
+import Arrow from '../images/circled-right-2.png';
+import Logo from '../images/MYtineraryLogo.png';
 
 const LandingTab = () => {
   return (
