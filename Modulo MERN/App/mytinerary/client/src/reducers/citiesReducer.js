@@ -1,27 +1,23 @@
-import { GET_CITIES } from '../actions/types'
+import { GET_CITIES, CITIES_LOADING } from "../actions/types";
 
-const initState = { cities: [], loading: false }
+const initState = { cities: [], loading: false };
 
-export default function (state = initState, action) {
-
+export default function(state = initState, action) {
   switch (action.type) {
     case GET_CITIES:
       return {
         ...state,
         cities: action.payload,
         loading: false
-      }
-      break;
+      };
 
     case CITIES_LOADING:
       return {
         ...state,
-        loading
-      }
+        loading: true
+      };
 
     default:
-      state
-      break;
+      return { ...state };
   }
-
 }
