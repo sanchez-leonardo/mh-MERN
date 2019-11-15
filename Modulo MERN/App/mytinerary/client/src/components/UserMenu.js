@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 import UserIcon from '../images/user.png';

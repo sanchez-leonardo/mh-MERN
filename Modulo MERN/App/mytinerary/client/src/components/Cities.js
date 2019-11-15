@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Container, ListGroup, ListGroupItem } from 'reactstrap';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { getCities } from '../actions/citiesActions';
 
 import FilterForm from './FIlterForm';
@@ -51,7 +53,9 @@ class Cities extends Component {
             {this.citiesToRender().map(city => {
               return (
                 <ListGroupItem key={city._id}>
-                  {city.city}, {city.country}
+                  <NavLink to={'/itineraries/' + city._id}>
+                    {city.city}, {city.country}
+                  </NavLink>
                 </ListGroupItem>
               );
             })}
@@ -71,7 +75,4 @@ const mapStateToProps = state => ({
   cities: state.cities
 });
 
-export default connect(
-  mapStateToProps,
-  { getCities }
-)(Cities);
+export default connect(mapStateToProps, { getCities })(Cities);

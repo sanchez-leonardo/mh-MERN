@@ -9,6 +9,7 @@ import store from './store';
 import NavBar from './components/NavBar';
 import LandingTabV2 from './components/LandingTabV2';
 import Cities from './components/Cities';
+import Itineraries from './components/Itineraries';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import Footer from './components/Footer';
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path='/cities' component={Cities} />
             <Route path='/log-in' component={LogIn} />
             <Route path='/sign-up' component={SignUp} />
+            <Route path='/itineraries/:cityId' component={Itineraries}></Route>
             <Footer />
           </div>
         </BrowserRouter>
