@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { getItinerariesByCity } from '../actions/itinerariesActions';
+import { getItinerariesByCity } from "../actions/itinerariesActions";
 
 class Itineraries extends Component {
   componentDidMount() {

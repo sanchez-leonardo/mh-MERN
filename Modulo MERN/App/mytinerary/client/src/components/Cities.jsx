@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Container, ListGroup, ListGroupItem } from 'reactstrap';
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import { Col, ListGroup, ListGroupItem } from "reactstrap";
 
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { getCities } from '../actions/citiesActions';
+import { getCities } from "../actions/citiesActions";
 
-import FilterForm from './FIlterForm';
+import FilterForm from "./FIlterForm";
 
 class Cities extends Component {
   constructor(props) {
@@ -45,23 +45,22 @@ class Cities extends Component {
 
   render() {
     return (
-      <section className='tab cities'>
-        <h1 className='text-center'>Cities</h1>
-        <Container>
-          <FilterForm filterCities={this.filterCities}></FilterForm>
-          <ListGroup>
-            {this.citiesToRender().map(city => {
-              return (
-                <ListGroupItem key={city._id}>
-                  <NavLink to={'/itineraries/' + city._id}>
-                    {city.city}, {city.country}
-                  </NavLink>
-                </ListGroupItem>
-              );
-            })}
-          </ListGroup>
-        </Container>
-      </section>
+      <Col className="tab cities">
+        <h1 className="text-center">Cities</h1>
+
+        <FilterForm filterCities={this.filterCities}></FilterForm>
+        <ListGroup>
+          {this.citiesToRender().map(city => {
+            return (
+              <ListGroupItem key={city._id}>
+                <NavLink to={"/itineraries/" + city._id}>
+                  {city.city}, {city.country}
+                </NavLink>
+              </ListGroupItem>
+            );
+          })}
+        </ListGroup>
+      </Col>
     );
   }
 }

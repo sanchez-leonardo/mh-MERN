@@ -10,103 +10,38 @@
 
 body {
   background-color: var(--main-color);
+  height: 100vh;
+}
+/* 
+header {
+  height: 10vh;
+} */
+
+main {
+  height: 85vh;
 }
 
-/* Mobile First */
-@media screen and (max-width: 720px) {
-  /* Document and body */
-  html,
-  body {
-    height: 100vh;
-    width: 100vw;
-  }
-
-  body {
-    overflow: hidden;
-  }
-
-  .navbar {
-    height: 10vh;
-  }
-
-  .navbar-brand {
-    height: 100%;
-  }
-
-  .user-menu {
-    height: 5vh;
-  }
-
-  .user-menu-img {
-    height: 100%;
-  }
-
-  .tab {
-    height: 80vh;
-    overflow: auto;
-  }
-
-  /* Footer */
-  footer {
-    height: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-
-  /* Landing tab */
-  .landing {
-    display: grid;
-    grid-auto-rows: min-content 1fr 2fr;
-  }
-
-  #main-button-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 2vh 2vw;
-  }
-
-  #app-logo {
-    width: 100%;
-  }
-
-  #home-icon {
-    height: 10vh;
-  }
-
-  #arrow-btn {
-    width: 30%;
-    margin-top: 1vh;
-  }
-  /* Carousel reactstrap */
-  .carousel {
-    width: 100vw;
-  }
-
-  .carousel-item > img {
-    width: 100vw;
-  }
-
-  ol.carousel-indicators {
-    margin-bottom: 0;
-  }
-
-  /* Log in and Sign up - Provisory */
-  .log-in,
-  .sign-up {
-    margin: 5vh 5vw;
-    padding: 5vh 5vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  }
+footer {
+  height: 5vh;
 }
 
-@media screen and (min-width: 720px) {
-  /* TBA */
+#arrow-btn {
+  width: 100px;
+}
+
+#app-logo {
+  width: 100%;
+}
+
+#home-icon {
+  height: 5vh;
+}
+
+#user-menu-img {
+  height: 5vh;
+}
+
+.slide-city-img {
+  height: 3rem;
+  margin: 0 auto;
 }
