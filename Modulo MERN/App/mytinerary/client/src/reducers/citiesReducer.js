@@ -1,4 +1,4 @@
-import { GET_CITIES, CITIES_LOADING } from "../actions/types";
+import { GET_CITIES, CITIES_LOADING, GET_CITY_BY_ID } from "../actions/types";
 
 const initState = { cities: [], loading: false };
 
@@ -10,6 +10,13 @@ export default function(state = initState, action) {
         cities: action.payload,
         loading: false
       };
+
+    case GET_CITY_BY_ID:
+      return {
+        ...state,
+        cities: action.payload,
+        loading: false
+      }
 
     case CITIES_LOADING:
       return {

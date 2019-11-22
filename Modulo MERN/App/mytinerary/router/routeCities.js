@@ -13,6 +13,16 @@ router.get("/", (req, res) => {
     .then(cities => res.json(cities));
 });
 
+//  GET
+//  /cities/:id
+//  Returns one city
+router.get("/:city", (req, res) => {
+  const cityId = mongoose.Types.ObjectId(req.params.city);
+
+  City.find(cityId)
+    .then(city => res.json(city));
+});
+
 //TBA Fails to get body elements, body parser needed?
 //  POST
 //  /cities

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { UncontrolledCollapse, CardBody, Card } from 'reactstrap';
+import {Row, UncontrolledCollapse, CardBody, Card } from 'reactstrap';
 
 import ActivitiesSlider from './ActivitiesSlider';
 
 const CollapsibleItinerary = props => {
-  const { itinerary } = this.props;
+  const itinerary = props.itinerary;
 
   return (
+    <Row>
     <Card>
       <CardBody>
         <div>
@@ -20,9 +21,9 @@ const CollapsibleItinerary = props => {
         <div>
           <h6>{itinerary.title}</h6>
           <div>
-            <p>{itinerary.rating}</p>
-            <p>{itinerary.duration}</p>
-            <p>{itinerary.price}</p>
+            <p>{itinerary.rating + "likes"}</p>
+            <p>{itinerary.duration+"hs"}</p>
+            <p>{"$"+itinerary.price}</p>
           </div>
           <div>
             {itinerary.hashtags.map(hash => {
@@ -30,8 +31,8 @@ const CollapsibleItinerary = props => {
             })}
           </div>
         </div>
-        <p id={itinerary._id}>View the whole thing</p>
-        <UncontrolledCollapse toggle={'#' + itinerary._id}>
+        <p id={"itinerary"+ itinerary._id}>View the whole thing</p>
+        <UncontrolledCollapse toggler={"itinerary"+itinerary._id}>
           <h6>Activities</h6>
           <ActivitiesSlider
             activities={itinerary.activities}
@@ -39,6 +40,7 @@ const CollapsibleItinerary = props => {
         </UncontrolledCollapse>
       </CardBody>
     </Card>
+    </Row>
   );
 };
 

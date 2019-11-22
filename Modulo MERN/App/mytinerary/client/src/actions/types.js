@@ -1,5 +1,6 @@
 //Cities Actions
 export const GET_CITIES = 'GET_CITIES';
+export const GET_CITY_BY_ID = 'GET_CITY_BY_ID'
 export const CITIES_LOADING = 'CITIES_LOADING';
 
 //Itineraries Actions

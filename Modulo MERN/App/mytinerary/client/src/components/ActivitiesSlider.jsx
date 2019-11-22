@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Slider from "react-slick";
 
 const ActivitiesSlider = props => {
   const settings = {
@@ -12,6 +13,10 @@ const ActivitiesSlider = props => {
     <div>
       <h2> Single Item</h2>
       <Slider {...settings}>
+        <p>lalala</p>
+        <p>lalala</p>
+        <p>lalala</p>
+        <p>lalala</p>
         <p>lalala</p>
       </Slider>
     </div>

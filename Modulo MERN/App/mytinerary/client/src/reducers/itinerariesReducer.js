@@ -1,6 +1,6 @@
 import { GET_ITINERARIES_BY_CITY, ITINERARIES_LOADING } from '../actions/types';
 
-const initState = { itineraries: [], loading: false };
+const initState = {itineraries: [], loading: false };
 
 export default function(state = initState, action) {
   switch (action.type) {

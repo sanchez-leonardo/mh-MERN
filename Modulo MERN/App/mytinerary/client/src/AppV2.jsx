@@ -30,7 +30,7 @@ class App extends Component {
                 <Route path="/log-in" component={LogIn} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route
-                  path="/itineraries/:cityId"
+                  path="/itineraries/:cityId/:cityName"
                   component={Itineraries}
                 ></Route>
               </Row>
