@@ -44,7 +44,7 @@ class CitiesCarousel extends Component {
         <Slider {...settings}>
           {this.state.carouselCities.map(city => (
             <div className="slide-city" key={city._id}>
-              <NavLink to={"/itineraries/" + city._id + "/"+ city.city}>
+              <NavLink to={"/itineraries/" + city._id + "/" + city.city}>
                 <img
                   className="slide-city-img"
                   src={require("../images/cities/country-placeholder.webp")}

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const SignUp = () => {
   return (
-    <section className='tab sign-up'>
+    <section className="tab sign-up">
       <h1>Sign Up Form</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos

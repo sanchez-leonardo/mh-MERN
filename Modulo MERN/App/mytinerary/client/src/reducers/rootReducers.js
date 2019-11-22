@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import citiesReducer from './citiesReducer';
+import citiesReducer from "./citiesReducer";
 
-import itinerariesReducer from './itinerariesReducer';
+import itinerariesReducer from "./itinerariesReducer";
 
 export default combineReducers({
   cities: citiesReducer,

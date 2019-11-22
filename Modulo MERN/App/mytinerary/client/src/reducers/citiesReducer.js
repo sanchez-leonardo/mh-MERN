@@ -16,7 +16,7 @@ export default function(state = initState, action) {
         ...state,
         cities: action.payload,
         loading: false
-      }
+      };
 
     case CITIES_LOADING:
       return {

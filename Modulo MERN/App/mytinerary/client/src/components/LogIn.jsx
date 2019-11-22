@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const LogIn = () => {
   return (
-    <section className='tab log-in'>
+    <section className="tab log-in">
       <h1>Log In Form</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos

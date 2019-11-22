@@ -15,12 +15,14 @@ export const getCities = () => dispatch => {
 export const getCityById = cityId => dispatch => {
   dispatch(setCitiesLoading());
   fetch("/cities/" + cityId)
-  .then(response => response.json())
-  .then(data => dispatch({
-    type: GET_CITY_BY_ID,
-    payload: data
-  }))
-}
+    .then(response => response.json())
+    .then(data =>
+      dispatch({
+        type: GET_CITY_BY_ID,
+        payload: data
+      })
+    );
+};
 
 export const setCitiesLoading = () => {
   return {

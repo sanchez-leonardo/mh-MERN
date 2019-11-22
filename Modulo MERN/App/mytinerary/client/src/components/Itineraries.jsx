@@ -5,20 +5,18 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { getItinerariesByCity } from "../actions/itinerariesActions";
-import { getCityById } from "../actions/citiesActions";
 
 import CollapsibleItinerary from "./CollapsibleItinerary";
 
-class Itineraries extends Component { 
-
+class Itineraries extends Component {
   componentDidMount() {
     const { cityId } = this.props.match.params;
-    
+
     this.props.getItinerariesByCity(cityId);
   }
 
   render() {
-    const cityName = this.props.match.params.cityName
+    const cityName = this.props.match.params.cityName;
 
     return (
       <Container fluid>
@@ -35,7 +33,10 @@ class Itineraries extends Component {
         <Row>
           {this.props.itineraries.itineraries.map(itinerary => {
             return (
-              <CollapsibleItinerary itinerary={itinerary}  key={itinerary._id}></CollapsibleItinerary>
+              <CollapsibleItinerary
+                itinerary={itinerary}
+                key={itinerary._id}
+              ></CollapsibleItinerary>
             );
           })}
         </Row>
@@ -45,7 +46,6 @@ class Itineraries extends Component {
 }
 
 Itineraries.propTypes = {
-  getCityById: PropTypes.func.isRequired,
   getItinerariesByCity: PropTypes.func.isRequired,
   cities: PropTypes.object.isRequired,
   itineraries: PropTypes.object.isRequired
@@ -56,4 +56,4 @@ const mapStateToProps = state => ({
   itineraries: state.itineraries
 });
 
-export default connect(mapStateToProps, { getItinerariesByCity, getCityById })(Itineraries);
+export default connect(mapStateToProps, { getItinerariesByCity })(Itineraries);

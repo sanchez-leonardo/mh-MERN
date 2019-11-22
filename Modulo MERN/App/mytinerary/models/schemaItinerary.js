@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const itinerarySchema = new Schema({
@@ -12,6 +12,6 @@ const itinerarySchema = new Schema({
   hashtags: Array
 });
 
-const itinerary = mongoose.model('itinerary', itinerarySchema);
+const itinerary = mongoose.model("itinerary", itinerarySchema);
 
 module.exports = itinerary;

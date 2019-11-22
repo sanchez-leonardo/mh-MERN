@@ -53,7 +53,7 @@ class Cities extends Component {
           {this.citiesToRender().map(city => {
             return (
               <ListGroupItem key={city._id}>
-                <NavLink to={"/itineraries/" + city._id + "/"+ city.city}>
+                <NavLink to={"/itineraries/" + city._id + "/" + city.city}>
                   {city.city}, {city.country}
                 </NavLink>
               </ListGroupItem>
