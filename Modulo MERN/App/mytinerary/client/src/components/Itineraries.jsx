@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { getItinerariesByCity } from "../actions/itinerariesActions";
+import { getItinerariesByCity } from '../actions/itinerariesActions';
 
-import CollapsibleItinerary from "./CollapsibleItinerary";
+import CollapsibleItinerary from './CollapsibleItinerary';
 
 class Itineraries extends Component {
   componentDidMount() {
@@ -17,20 +17,24 @@ class Itineraries extends Component {
 
   render() {
     const cityName = this.props.match.params.cityName;
+    const imgStyle = {
+      'max-height': '3rem'
+    };
 
     return (
       <Container fluid>
-        <Row>
-          <Col>
+        <Row className='text-center' noGutters>
+          <Col sm='auto'>
             <img
-              className="itineraries-city-img"
-              src={require("../images/cities/country-placeholder.webp")}
-              alt="placeholder"
+              style={imgStyle}
+              className='itineraries-city-img'
+              src={require('../images/cities/country-placeholder.webp')}
+              alt='placeholder'
             />
-            <h4 className="itineraries-city-img-header">{cityName}</h4>
+            <h4 className='itineraries-city-img-header'>{cityName}</h4>
           </Col>
         </Row>
-        <Row>
+        <Row noGutters>
           {this.props.itineraries.itineraries.map(itinerary => {
             return (
               <CollapsibleItinerary
