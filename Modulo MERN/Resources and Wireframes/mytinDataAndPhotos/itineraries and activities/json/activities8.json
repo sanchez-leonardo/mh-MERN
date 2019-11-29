@@ -1,0 +1,318 @@
+﻿{
+    "Hoja1": [
+        {
+            "itinerary_title": "Up to Antics",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "BoozyBabeXOXO",
+            "hashtag": "#Theatre #BeerGarden #Barcelona"
+        },
+        {
+            "itinerary_title": "Wine & Cava with no Palaver",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "Wine&DineGuy",
+            "hashtag": "#Winetasting #Cavatour #Catalunya"
+        },
+        {
+            "itinerary_title": "Pablo Picasso in 4 Hours",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "LiveforArt71",
+            "hashtag": "#Picasso #Gotico #Els4Gats"
+        },
+        {
+            "itinerary_title": "Family Fun at Costa Dorada PortAventura Theme Park",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "familyfunforever44",
+            "hashtag": "#familyfun #Portaventura #Barcelona"
+        },
+        {
+            "itinerary_title": "Gaudi In A Day",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "GaudiLover",
+            "hashtag": "#Gaudi #Architecture #Barcelona",
+            "title": "Park Guell",
+            "adress": "Upper Gracia",
+            "duration": "2.5",
+            "price": "10 ",
+            "summary": "End the perfect Gaudi day at this magical fantasia. Be transported to a dreamland of radiant mosaics, iridescent fountains, and impossible symmetries. After exploring the park, hike up the hill with your picnic and watch the sun descend on this glorious city of light and magic."
+        },
+        {
+            "itinerary_title": "Outside the City (Montserrat)",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "Lady_Like_to_Hike",
+            "hashtag": "#Hiking #Montserat #Barcelona"
+        },
+        {
+            "itinerary_title": "Luxury Shopping tour",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "AfifAmjad786",
+            "hashtag": "#PasseigdeGracia #Shoptillyoudrop #Barcelona"
+        },
+        {
+            "itinerary_title": "Graffiti Galore",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "el.dodger.astuto.",
+            "hashtag": "#Graffitti #Hiddenart #Barclona",
+            "title": "El Gato de Botero",
+            "adress": "Rambla del Raval, s/n, 08001 Barcelona",
+            "img": "el-gato-de-botero.jpg",
+            "duration": "0.5",
+            "price": "Free",
+            "summary": "The Cat by Fernando Botero was bought by the Barcelona City Council in 1987. From then until 2003, the cat wandered the streets of the city in search of a permanent site. His first stop was the Parc de la Ciutadella, near his fellow animals at the Barcelona Zoo. He was then taken to a site by the Olympic Stadium, and a few years later he was placed in a small square behind the medieval shipyards of Barcelona. Finally, in 2003, the decision was made to move it to a permanent place at the end of the newly created Rambla del Raval."
+        },
+        {
+            "itinerary_title": "Visca al Barca!",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "FatherofFootball",
+            "hashtag": "#CampNou #Football #FCBarcelona"
+        },
+        {
+            "itinerary_title": "Placa's Plus Cocktails",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "BoozyBabeXOXO",
+            "hashtag": "#Cocktails #Placa's #Barcelona"
+        },
+        {
+            "itinerary_title": "Tappa till you droppa",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "hambrealumna",
+            "hashtag": "#Tappas #Studentlife #Cheaptoeat",
+            "title": "tiela i llibertat",
+            "adress": "Carrer de Blai, 35, 08004 Barcelona",
+            "img": "pincho-4.jpg",
+            "duration": "1",
+            "price": " 3",
+            "summary": "1 Beer, 1 Pincho"
+        },
+        {
+            "itinerary_title": "Barcelona Art History Tour",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "LiveforArt71",
+            "hashtag": "#Winetasting #Cavatour #Catalunya"
+        },
+        {
+            "itinerary_title": "Rooftop Mania",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "Lazarenko1996",
+            "hashtag": "#RooftopParties #Sangria #Barcelona",
+            "title": "1881",
+            "adress": "Plaça de Pau Vila, 3, 08003 Barcelona",
+            "img": "1881.jpg",
+            "duration": "1",
+            "price": " 15",
+            "summary": "My favourite terrazza above the History Museum of Catalunya, one of the nicest views, can see the docks and the W building."
+        },
+        {
+            "itinerary_title": "Costa-less Brava \r\n(Day 1)",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "BasedinBCN",
+            "hashtag": "#CostaBrava #Weekendaway #Barcelona"
+        },
+        {
+            "itinerary_title": "Costa-less Brava \r\n(Day 2)",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "BasedinBCN",
+            "hashtag": "#CostaBrava #Weekendaway #Barcelona"
+        },
+        {
+            "itinerary_title": "Down by the Sea-tges \r\n(Day 1)",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "miss.tastytraveller",
+            "hashtag": "#Sitges #Weekendaway #Barcelona"
+        },
+        {
+            "itinerary_title": "Down by the Sea-tges \r\n(Day 2)",
+            "city": "Barcelona",
+            "country": "Spain",
+            "user": "miss.tastytraveller",
+            "hashtag": "#Sitges #Weekendaway #Barcelona",
+            "title": "Train to Barcelona",
+            "adress": "Plaça Eduard Maristany, 1, 08870 Sitges, Barcelona",
+            "duration": "0.5",
+            "price": "Ticket Fare: €4"
+        },
+        {
+            "itinerary_title": "Brandenburg Blitz",
+            "city": "Berlin",
+            "country": "Germany",
+            "user": "MüllerMan25",
+            "hashtag": "#History #Berlin #Holiday"
+        },
+        {
+            "itinerary_title": "Berlin Wall Tour",
+            "city": "Berlin",
+            "country": "Germany",
+            "user": "Talking-travellers",
+            "hashtag": "#History #Berlinwall #MYtin"
+        },
+        {
+            "itinerary_title": "Nemo Science Museum Trip",
+            "city": "Amsterdam",
+            "country": "Netherlands",
+            "user": "familyfunforever44",
+            "hashtag": "#Sciencemuseum #familyfun #Berlin"
+        },
+        {
+            "itinerary_title": "A day in the Dam",
+            "city": "Amsterdam",
+            "country": "Netherlands",
+            "user": "Amster-dame53",
+            "hashtag": "#IAmsterdam #Canals #MYtin"
+        },
+        {
+            "itinerary_title": "My Dam Holiday\r\n(Day 1)",
+            "city": "Amsterdam",
+            "country": "Netherlands",
+            "user": "Amster-dame53",
+            "hashtag": "#Amsterdam #2DayHoliday #MYtin"
+        },
+        {
+            "itinerary_title": "My Dam Holiday\r\n(Day 2)",
+            "city": "Amsterdam",
+            "country": "Netherlands",
+            "user": "Amster-dame53",
+            "hashtag": "#Amsterdam #2DayHoliday #MYtin"
+        },
+        {
+            "itinerary_title": "Belém Tower in 4 Hours",
+            "city": "Lisbon",
+            "country": "Portugal",
+            "user": "LisbonLady2000",
+            "hashtag": "#Lisbon #MYtin #Landmarks"
+        },
+        {
+            "itinerary_title": "A short time with Lisbon wine",
+            "city": "Lisbon",
+            "country": "Portugal",
+            "user": "Wine&DineGuy",
+            "hashtag": "#Lisbon #Wine&Dine #MYtin"
+        },
+        {
+            "itinerary_title": "Eiffel Tower Trip",
+            "city": "Paris",
+            "country": "France",
+            "user": "Alex45",
+            "hashtag": "#Eiffel Tower #Paris #Holiday"
+        },
+        {
+            "itinerary_title": "I'd love me some Louvre",
+            "city": "Paris",
+            "country": "France",
+            "user": "OntheGo247",
+            "hashtag": "#Louvre #Paris #Art"
+        },
+        {
+            "itinerary_title": "Paris without wine is not fine.",
+            "city": "Paris",
+            "country": "France",
+            "user": "Wine&DineGuy",
+            "hashtag": "#Paris #Wine&Dine #MYtin"
+        },
+        {
+            "itinerary_title": "Lass on the lash",
+            "city": "Dublin",
+            "country": "Ireland",
+            "user": "BoozyBabeXOXO",
+            "hashtag": "#Booze #Ireland #Pubs"
+        },
+        {
+            "itinerary_title": "A day in Dublin",
+            "city": "Dublin",
+            "country": "Ireland",
+            "user": "OntheGo247",
+            "hashtag": "#Dublin #Daytrip #MYtin"
+        },
+        {
+            "itinerary_title": "Hungry for Hungarian Art",
+            "city": "Budapest",
+            "country": "Hungary",
+            "user": "LiveforArt71",
+            "hashtag": "#Budapest #Art #Gallery"
+        },
+        {
+            "itinerary_title": "Along Antall Jozsef",
+            "city": "Budapest",
+            "country": "Hungary",
+            "user": "HungarianGirl21",
+            "hashtag": "#Architecture #Budapest #MYtin"
+        },
+        {
+            "itinerary_title": "Hungarian wine is simply divine",
+            "city": "Budapest",
+            "country": "Hungary",
+            "user": "Wine&DineGuy",
+            "hashtag": "#Budapest #Wine&Dine #MYtin"
+        },
+        {
+            "itinerary_title": "Medievil Mayhem",
+            "city": "Prague",
+            "country": "Czech Republic",
+            "user": "OntheGo247",
+            "hashtag": "#Prague #Medievilmayhem #MYtin"
+        },
+        {
+            "itinerary_title": "4 Hours in Prague",
+            "city": "Prague",
+            "country": "Czech Republic",
+            "user": "RedHairedRoamer",
+            "hashtag": "#Prague #daytrip #citywalk"
+        },
+        {
+            "itinerary_title": "Hala Madrid!",
+            "city": "Madrid",
+            "country": "Spain",
+            "user": "FatherofFootball",
+            "hashtag": "#RealMadrid #Football #Familyouting"
+        },
+        {
+            "itinerary_title": "Perpetually in Prague",
+            "city": "Madrid",
+            "country": "Spain",
+            "user": "miss.tastytraveller",
+            "hashtag": "#Foody #Madrid #Museums"
+        },
+        {
+            "itinerary_title": "Holy Rome-ing",
+            "city": "Rome",
+            "country": "Italy",
+            "user": "Nino.Giovanni.88",
+            "hashtag": "#Holyrome #Vatican #Italy"
+        },
+        {
+            "itinerary_title": "OntheRome247",
+            "city": "Rome",
+            "country": "Italy",
+            "user": "OntheGo247",
+            "hashtag": "#Rome #Architecture #MYtin"
+        },
+        {
+            "itinerary_title": "When in Rome\r\n(Day 1)",
+            "city": "Rome",
+            "country": "Italy",
+            "user": "LiveforArt71",
+            "hashtag": "#WheninRome #2daytrip #Italy"
+        },
+        {
+            "itinerary_title": "When in Rome\r\n(Day 2)",
+            "city": "Rome",
+            "country": "Italy",
+            "user": "LiveforArt71",
+            "hashtag": "#WheninRome #2daytrip #Italy"
+        }
+    ]
+}

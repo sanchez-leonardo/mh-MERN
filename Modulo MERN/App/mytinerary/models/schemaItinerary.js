@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itinerarySchema = new Schema({
@@ -6,12 +6,12 @@ const itinerarySchema = new Schema({
   user: String,
   profile_pic: String,
   title: String,
-  rating: String,
+  rating: Number,
   duration: String,
-  price: String,
+  total_price: String,
   hashtags: Array
 });
 
-const itinerary = mongoose.model("itinerary", itinerarySchema);
+const itinerary = mongoose.model('itinerary', itinerarySchema);
 
 module.exports = itinerary;
