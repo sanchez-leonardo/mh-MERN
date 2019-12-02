@@ -4,7 +4,10 @@ import citiesReducer from "./citiesReducer";
 
 import itinerariesReducer from "./itinerariesReducer";
 
+import activitiesReducer from "./activitiesReducer";
+
 export default combineReducers({
   cities: citiesReducer,
-  itineraries: itinerariesReducer
+  itineraries: itinerariesReducer,
+  activities: activitiesReducer
 });

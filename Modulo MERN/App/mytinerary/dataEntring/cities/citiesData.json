@@ -94,13 +94,13 @@
     "img": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6a/b6/81.jpg",
     "_id": "5ddd11e3f0b2730017fc723d",
     "name": "Amman(petra)",
-    "country": " Jordan",
+    "country": "Jordan",
     "__v": 0
   },
   {
     "img": "https://res.cloudinary.com/ds3w3iwbk/image/upload/v1570632597/MERN/20180519_150452.jpg",
     "_id": "5dddb3833891f300178c6e00",
-    "name": "Roma",
+    "name": "Rome",
     "country": "Italia",
     "__v": 0
   },
@@ -109,6 +109,63 @@
     "_id": "5dddb3b1a8e6520017984d2d",
     "name": "Rimini",
     "country": "Italia",
+    "__v": 0
+  },
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Barcelona",
+    "country": "Spain",
+    "__v": 0
+  },
+
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Madrid",
+    "country": "Spain",
+    "__v": 0
+  },
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Lisbon",
+    "country": "Portugal",
+    "__v": 0
+  },
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Berlin",
+    "country": "Germany",
+    "__v": 0
+  },
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Prague",
+    "country": "Czech Republic",
+    "__v": 0
+  },
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Dublin",
+    "country": "Ireland",
+    "__v": 0
+  },
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Paris",
+    "country": "France",
+    "__v": 0
+  },
+  {
+    "img": "",
+    "_id": "5dddb3b1a8e6520017984d2d",
+    "name": "Budapest",
+    "country": "Hungary",
     "__v": 0
   }
 ]

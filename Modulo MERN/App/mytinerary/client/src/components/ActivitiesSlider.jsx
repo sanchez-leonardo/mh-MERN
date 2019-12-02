@@ -1,6 +1,6 @@
-import React from 'react';
-import { Col } from 'reactstrap';
-import Slider from 'react-slick';
+import React from "react";
+import { Col } from "reactstrap";
+import Slider from "react-slick";
 
 const ActivitiesSlider = props => {
   const settings = {
@@ -14,15 +14,6 @@ const ActivitiesSlider = props => {
     <div>
       <h2> Single Item</h2>
       <Slider {...settings}>
-        <Col>
-          <p>lalala</p>
-        </Col>
-        <Col>
-          <p>lalala</p>
-        </Col>
-        <Col>
-          <p>lalala</p>
-        </Col>
         <Col>
           <p>lalala</p>
         </Col>

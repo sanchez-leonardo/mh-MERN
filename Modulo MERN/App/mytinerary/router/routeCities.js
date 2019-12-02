@@ -19,21 +19,20 @@ router.get("/", (req, res) => {
 router.get("/:city", (req, res) => {
   const cityId = mongoose.Types.ObjectId(req.params.city);
 
-  City.find(cityId)
-    .then(city => res.json(city));
+  City.find(cityId).then(city => res.json(city));
 });
 
 //TBA Fails to get body elements, body parser needed?
 //  POST
 //  /cities
 //  Adds a city
-router.post("/", (req, res) => {
+router.post("/:city", (req, res) => {
   const newCity = new City({
     city: req.body.city,
     country: req.body.country
   });
 
-  newCity.save().then(city => res.json(city));
+  newCity.save();
 });
 
 module.exports = router;

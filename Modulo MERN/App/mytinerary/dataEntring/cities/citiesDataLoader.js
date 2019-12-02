@@ -1,12 +1,19 @@
-require('../../server.js');
-const fs = require('fs');
-const CityModel = require('../../models/schemaCity');
+require("../../server");
 
-fs.readFile('citiesData.json', (err, data) => {
+const fs = require("fs");
+
+const CityModel = require("../../models/schemaCity");
+
+//lectura de archivo (si se cambia de carpeta, modificar la ruta)
+fs.readFile("citiesData.json", (err, data) => {
   if (err) console.log(err);
 
+  //Parseo de la info a Json, el log dice la cantidad de elementos que deberia ser la misma //cantidad de documentos en la DB
   const cities = JSON.parse(data);
+  console.log(cities.length);
 
+  //Por cada elemento del array, crea el documento acorde al schema.
+  // ****Chequear que las keys sean iguales al schema***
   cities.forEach(async city => {
     try {
       const newCity = new CityModel({
@@ -14,10 +21,12 @@ fs.readFile('citiesData.json', (err, data) => {
         country: city.country,
         img: city.img
       });
+      //Guarda la ciudad y confirma
       await newCity.save();
-      console.log('City added');
+      console.log(city.name + " added");
     } catch (err) {
-      console.log('city not added ' + city);
+      //Si Falla, avisa
+      console.log("city not added " + city);
       console.log(err);
     }
   });

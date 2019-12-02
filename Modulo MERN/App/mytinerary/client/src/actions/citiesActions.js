@@ -2,7 +2,7 @@ import { GET_CITIES, GET_CITY_BY_ID, CITIES_LOADING } from "./types";
 
 export const getCities = () => dispatch => {
   dispatch(setCitiesLoading());
-  fetch("/cities")
+  fetch("/api/cities")
     .then(response => response.json())
     .then(data =>
       dispatch({
@@ -14,7 +14,7 @@ export const getCities = () => dispatch => {
 
 export const getCityById = cityId => dispatch => {
   dispatch(setCitiesLoading());
-  fetch("/cities/" + cityId)
+  fetch("/api/cities/" + cityId)
     .then(response => response.json())
     .then(data =>
       dispatch({

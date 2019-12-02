@@ -1,17 +1,28 @@
 //Base modules
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 //Model (if needed)
-const Activities = require('../models/schemaActivity');
+const Activities = require("../models/schemaActivity");
 
 //  GET
 //  /itineraries
-//  Returns all itineraries
-router.get('/', (req, res) => {
+//  Returns all activities
+router.get("/", (req, res) => {
   Activities.find().then(activities => res.json(activities));
+});
+
+//  GET
+//  /itineraries/:Itineraryid
+//  Returns all itineraries
+router.get("/:itineraryId", (req, res) => {
+  const itineraryId = mongoose.Types.ObjectId(req.params.itineraryId);
+
+  Activities.find({ itinerary: itineraryId }).then(activities => {
+    res.json(activities);
+  });
 });
 
 module.exports = router;

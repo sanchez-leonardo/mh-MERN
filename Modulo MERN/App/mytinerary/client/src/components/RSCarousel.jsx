@@ -11,19 +11,8 @@ import { connect } from "react-redux";
 import { getCities } from "../actions/citiesActions";
 
 class CitiesCarousel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      carouselCities: []
-    };
-  }
-
   componentDidMount() {
     this.props.getCities();
-
-    let carouselCities = this.props.cities.cities.slice(0, 12);
-
-    this.setState({ carouselCities });
   }
 
   render() {
@@ -42,7 +31,7 @@ class CitiesCarousel extends Component {
       <Col className="col-11 mx-auto">
         <h4 className="text-center">Popular Mytineraries</h4>
         <Slider {...settings}>
-          {this.state.carouselCities.map(city => (
+          {this.props.cities.cities.map(city => (
             <div className="slide-city" key={city._id}>
               <NavLink to={"/itineraries/" + city._id + "/" + city.city}>
                 <img

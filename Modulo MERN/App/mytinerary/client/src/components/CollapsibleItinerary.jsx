@@ -1,5 +1,5 @@
-import React from 'react';
-// import { Link } from "react-router-dom";
+import React, { Component } from "react";
+
 import {
   Row,
   Col,
@@ -7,69 +7,94 @@ import {
   Card,
   CardBody,
   CardHeader
-} from 'reactstrap';
+} from "reactstrap";
 
-import ActivitiesSlider from './ActivitiesSlider';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-const CollapsibleItinerary = props => {
-  const itinerary = props.itinerary;
+import { getActivitiesByItinerary } from "../actions/activitiesActions";
 
-  const imgStyle = {
-    width: '90%'
-  };
+import ActivitiesSlider from "./ActivitiesSlider";
 
-  return (
-    <Card className='mt-2'>
-      <CardHeader>
-        <Row>
-          <Col xs='4'>
-            <img
-              src={require('../images/users/' + itinerary.profile_pic)}
-              alt='user profile pic'
-              style={imgStyle}
-            />
-            <p className='text-nowrap'>{itinerary.user}</p>
-          </Col>
-          <Col xs='8'>
-            <h6>{itinerary.title}</h6>
+class CollapsibleItinerary extends Component {
+  render() {
+    let imgStyle = {
+      width: "90%"
+    };
+
+    return (
+      <Col xs="11">
+        <Card className="mt-2">
+          <CardHeader>
             <Row>
-              <Col>
-                <p>{itinerary.rating + ' likes'}</p>
+              <Col xs="4">
+                <img
+                  src={this.props.itinerary.profile_pic}
+                  alt="user profile pic"
+                  style={imgStyle}
+                />
+                <p className="text-nowrap">{this.props.itinerary.user}</p>
               </Col>
-              <Col>
-                <p>{itinerary.duration + 'hs'}</p>
-              </Col>
-              <Col>
-                <p>{'$' + itinerary.price}</p>
+              <Col xs="8">
+                <h6>{this.props.itinerary.title}</h6>
+                <Row>
+                  <Col>
+                    <p>{this.props.itinerary.rating + " likes"}</p>
+                  </Col>
+                  <Col>
+                    <p>{this.props.itinerary.duration + "hs"}</p>
+                  </Col>
+                  <Col>
+                    <p>{"$" + this.props.itinerary.total_price}</p>
+                  </Col>
+                </Row>
               </Col>
             </Row>
-          </Col>
-        </Row>
-        <Row>
-          {itinerary.hashtags.map((hash, index) => {
-            return (
-              <Col>
-                <p className='font-weight-light' key={index}>
-                  {'#' + hash + ' '}
-                </p>
-              </Col>
-            );
-          })}
-        </Row>
-      </CardHeader>
-      <CardBody>
-        <p className='text-center' id={'itinerary' + itinerary._id}>
-          View the whole thing
-        </p>
-        <UncontrolledCollapse toggler={'itinerary' + itinerary._id}>
-          <h6>Activities</h6>
-          <ActivitiesSlider
-            activities={itinerary.activities}
-          ></ActivitiesSlider>
-        </UncontrolledCollapse>
-      </CardBody>
-    </Card>
-  );
+            <Row>
+              {this.props.itinerary.hashtags.map((hash, index) => {
+                return (
+                  <Col key={index}>
+                    <p className="font-weight-light">{"#" + hash + " "}</p>
+                  </Col>
+                );
+              })}
+            </Row>
+          </CardHeader>
+          <CardBody>
+            <p
+              className="text-center"
+              id={"itinerary" + this.props.itinerary._id}
+              onClick={() => {
+                this.props.getActivitiesByItinerary(this.props.itinerary._id);
+              }}
+            >
+              View the whole thing
+            </p>
+            <UncontrolledCollapse
+              toggler={"itinerary" + this.props.itinerary._id}
+            >
+              <h6>Activities</h6>
+              <ActivitiesSlider
+                activities={this.props.activities.activities.filter(
+                  activity => activity.itinerary === this.props.itinerar_id
+                )}
+              ></ActivitiesSlider>
+            </UncontrolledCollapse>
+          </CardBody>
+        </Card>
+      </Col>
+    );
+  }
+}
+
+CollapsibleItinerary.propTypes = {
+  getActivitiesByItinerary: PropTypes.func.isRequired
 };
 
-export default CollapsibleItinerary;
+const mapStateToProps = state => ({
+  activities: state.activities
+});
+
+export default connect(mapStateToProps, { getActivitiesByItinerary })(
+  CollapsibleItinerary
+);

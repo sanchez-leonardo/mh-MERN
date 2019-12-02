@@ -2,7 +2,7 @@ import { GET_ITINERARIES_BY_CITY, ITINERARIES_LOADING } from "./types";
 
 export const getItinerariesByCity = cityId => dispatch => {
   dispatch(setItinerariesLoading());
-  fetch("/itineraries/" + cityId)
+  fetch("/api/itineraries/" + cityId)
     .then(response => response.json())
     .then(data =>
       dispatch({
