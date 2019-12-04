@@ -10,3 +10,8 @@ export const ITINERARIES_LOADING = "ITINERARIES_LOADING";
 //Activities Actions
 export const GET_ACTIVITIES_BY_ITINERARY = "GET_ACTIVITIES_BY_ITINERARY";
 export const ACTIVITIES_LOADING = "ITINERARIES_LOADING";
+
+//Users Actions
+
+export const SIGN_UP_USER = "SIGN_UP_USER"
+export const LOG_IN_USER = "LOG_IN_USER"

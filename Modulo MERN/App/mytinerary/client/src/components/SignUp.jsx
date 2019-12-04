@@ -8,6 +8,7 @@ import {
   Button,
   Form,
   FormGroup,
+  FormFeedback,
   Label,
   Input
 } from "reactstrap";
@@ -16,12 +17,19 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
-      userPassword: "",
-      userEmail: "",
-      userFirstName: "",
-      userLastName: "",
-      userCountry: "",
+      formData: {
+        userName: "",
+        userPassword: "",
+        userEmail: "",
+        userFirstName: "",
+        userLastName: "",
+        userCountry: ""
+      },
+      required: {
+        userName: "",
+        userPassword: "",
+        userEmail: ""
+      },
       tosCheck: false
     };
   }
@@ -31,22 +39,40 @@ class SignUp extends Component {
     const name = target.name;
     const value = target.type === "checkbox" ? target.checked : target.value;
 
-    this.setState({ [name]: value });
+    if (target.type === "checkbox") {
+      this.setState({ [name]: value })
+    } else {
+
+      this.setState({
+        formData: {
+          ...this.state.formData,
+          [name]: value
+        }
+      });
+    }
+  }
+
+  requiredField(evt) {
+    const target = evt.target;
+    const name = target.name;
+    const value = target.value;
+
+    const { required } = this.state
+
+    if (value.length === 0) {
+      required[name] = "empty"
+    } else {
+      required[name] = "completed"
+    }
+    this.setState({ required })
   }
 
   async submitForm(evt) {
     evt.preventDefault();
-    console.log(this.state);
 
-    let formData = {
-      userName: this.state.userName,
-      userPassword: this.state.userPassword,
-      userEmail: this.state.userEmail,
-      userFirstName: this.state.userFirstName,
-      userLastName: this.state.userLastName,
-      userCountry: this.state.userCountry
-    };
+    let formData = this.state.formData
 
+    console.log(formData);
     let body = new URLSearchParams(formData);
 
     let init = {
@@ -54,8 +80,12 @@ class SignUp extends Component {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body
     };
-
-    await fetch("/users", init);
+    try {
+      await fetch("/api/users", init);
+    }
+    catch (e) {
+      console.log(e)
+    }
   }
 
   render() {
@@ -67,14 +97,18 @@ class SignUp extends Component {
             <Label for="userName">User Name:</Label>
             <Col>
               <Input
-                type="email"
+                type="text"
                 name="userName"
                 id="userName"
                 placeholder="6 digits or more"
                 onChange={e => {
                   this.handleInputValue(e);
+                  this.requiredField(e);
                 }}
+                valid={this.state.required.userName === "completed"}
+                invalid={this.state.required.userName === "empty" ? true : false}
               />
+              <FormFeedback invalid>This field is required</FormFeedback>
             </Col>
           </FormGroup>
           <FormGroup row>
@@ -89,6 +123,7 @@ class SignUp extends Component {
                   this.handleInputValue(e);
                 }}
               />
+
             </Col>
           </FormGroup>
           <FormGroup row>
@@ -103,6 +138,7 @@ class SignUp extends Component {
                   this.handleInputValue(e);
                 }}
               />
+              <FormFeedback invalid>This field is required</FormFeedback>
             </Col>
           </FormGroup>
           <FormGroup row>

@@ -25,12 +25,12 @@ app.use("/api/activities", activities);
 
 app.use("/api/users", users);
 
-//DB conection (URI to be moved)
+//DB conection
 const mongoURI =
   "mongodb+srv://leonardo:leonardo@mytinerarycluster-x4qry.mongodb.net/mytinerary?retryWrites=true&w=majority";
 
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
