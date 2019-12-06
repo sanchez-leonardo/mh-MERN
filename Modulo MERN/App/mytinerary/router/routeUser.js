@@ -5,17 +5,19 @@ const router = express.Router();
 const User = require("../models/schemaUser");
 //express-validator methods
 const { userValidationRules, validate } = require('./userValidator')
+//BCrypt
+const bcrypt = require('bcrypt')
 
 //  GET
-//  /cities
-//  Returns all users
+//  /users
+//  Returns all users (Dev Reasons)
 router.get("/", (req, res) => {
   User.find().then(users => res.json(users));
 });
 
 //  GET
-//  /user/:userName
-//  Returns one user
+//  /users/:userName
+//  Returns one user (Dev Reasons)
 router.get("/:userName", (req, res) => {
   const userId = mongoose.Types.ObjectId(req.params.userName);
 
@@ -26,25 +28,27 @@ router.get("/:userName", (req, res) => {
 //  /users
 //  Adds a User
 router.post("/", userValidationRules(), validate, async (req, res) => {
-  console.log(req.body);
 
   if (await User.exists({ userName: req.body.userName })) {
-    return res.status(403).send("User name taken");
+    return res.status(403).send({ error: "User name taken" });
   }
 
-  const newUser = new User({
-    userName: req.body.userName,
-    userPassword: req.body.userPassword,
-    userEmail: req.body.userEmail,
-    userFirstName: req.body.userFirstName,
-    userLastName: req.body.userLastName,
-    userCountry: req.body.userCountry
-  });
 
   try {
 
+    hashedPassword = await bcrypt.hash(req.body.userPassword, 10)
+
+    const newUser = new User({
+      userName: req.body.userName,
+      userPassword: hashedPassword,
+      userEmail: req.body.userEmail,
+      userFirstName: req.body.userFirstName,
+      userLastName: req.body.userLastName,
+      userCountry: req.body.userCountry
+    });
+
     await newUser.save();
-    res.status(201).send("User Created")
+    return res.status(201).send({ user: "created" })
 
   }
   catch (e) {
@@ -58,7 +62,17 @@ router.post("/", userValidationRules(), validate, async (req, res) => {
     return res.status(403).send(e.message)
   }
 
-
 });
+
+//POST
+// /login
+// Logs a user IN
+// router.post("/login", userValidationRules(), validate, async (req, res) => {
+
+
+
+
+// }
+
 
 module.exports = router;

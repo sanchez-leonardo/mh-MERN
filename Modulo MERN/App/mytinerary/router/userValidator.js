@@ -3,10 +3,10 @@ const userValidationRules = () => {
     return [
         //userName > 6 chars
         body('userName').isLength({ min: 6 }),
-        // userEmail
-        body('userEmail').isEmail(),
         // userPassword > 6 chars
-        body('userPassword').isLength({ min: 6 })
+        body('userPassword').isLength({ min: 6 }),
+        // userEmail
+        body('userEmail').isEmail()
     ]
 }
 

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
-// import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { signUpUser } from "../actions/usersActions";
 
 import {
   Container,
@@ -59,33 +62,27 @@ class SignUp extends Component {
 
     const { required } = this.state
 
-    if (value.length === 0) {
-      required[name] = "empty"
+    if (name === "userEmail") {
+
+      required[name] = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "complete" : "empty"
+
     } else {
-      required[name] = "completed"
+
+      if (value.length < 6) {
+        required[name] = "empty"
+      } else {
+        required[name] = "complete"
+      }
+
     }
+
     this.setState({ required })
   }
 
-  async submitForm(evt) {
-    evt.preventDefault();
+  submitForm(evt) {
+    evt.preventDefault()
 
-    let formData = this.state.formData
-
-    console.log(formData);
-    let body = new URLSearchParams(formData);
-
-    let init = {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body
-    };
-    try {
-      await fetch("/api/users", init);
-    }
-    catch (e) {
-      console.log(e)
-    }
+    this.props.signUpUser(this.state.formData)
   }
 
   render() {
@@ -105,8 +102,8 @@ class SignUp extends Component {
                   this.handleInputValue(e);
                   this.requiredField(e);
                 }}
-                valid={this.state.required.userName === "completed"}
-                invalid={this.state.required.userName === "empty" ? true : false}
+                valid={this.state.required.userName === "complete"}
+                invalid={this.state.required.userName === "empty"}
               />
               <FormFeedback invalid>This field is required</FormFeedback>
             </Col>
@@ -121,9 +118,12 @@ class SignUp extends Component {
                 placeholder="6 digits or more"
                 onChange={e => {
                   this.handleInputValue(e);
+                  this.requiredField(e);
                 }}
+                valid={this.state.required.userPassword === "complete"}
+                invalid={this.state.required.userPassword === "empty"}
               />
-
+              <FormFeedback invalid>This field is required</FormFeedback>
             </Col>
           </FormGroup>
           <FormGroup row>
@@ -136,7 +136,10 @@ class SignUp extends Component {
                 placeholder="example@somewhere.com"
                 onChange={e => {
                   this.handleInputValue(e);
+                  this.requiredField(e);
                 }}
+                valid={this.state.required.userEmail === "complete"}
+                invalid={this.state.required.userEmail === "empty"}
               />
               <FormFeedback invalid>This field is required</FormFeedback>
             </Col>
@@ -212,7 +215,7 @@ class SignUp extends Component {
             </Col>
           </FormGroup>
           <FormGroup className="text-center">
-            <Button color="primary" size="md">
+            <Button color="primary" size="md" disabled={!this.state.tosCheck}>
               Sign Up!
             </Button>
           </FormGroup>
@@ -222,4 +225,11 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+SignUp.propTypes = {
+  signUpUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+});
+
+export default connect(mapStateToProps, { signUpUser })(SignUp);
