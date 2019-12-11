@@ -3,8 +3,7 @@ import {
   USER_LOADING
 } from "../actions/types";
 
-export const signUpUser = (formData) => dispatch => {
-
+export const signUpUser = formData => dispatch => {
   let body = new URLSearchParams(formData);
 
   let init = {
@@ -16,8 +15,8 @@ export const signUpUser = (formData) => dispatch => {
   fetch("/api/users", init)
     .then(response => response.json())
     .then(data => console.log(data))
-    .catch(error => console.log(error))
-}
+    .catch(error => console.log(error));
+};
 
 // export const logInUser = async (formData) => dispatch => {
 

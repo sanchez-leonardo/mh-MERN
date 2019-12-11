@@ -1,11 +1,20 @@
 //Base modules
 const express = require("express");
 const mongoose = require("mongoose");
+const passport = require("passport");
+
+const dbUri = require("./config_keys").mongoURI;
+
 //Express element
 const app = express();
+
 //Middleware for post
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Passport middleware initialisation
+app.use(passport.initialize());
+require("./passport/JWTStrat");
 
 //Route files
 const test = require("./router/routeTest");
@@ -25,12 +34,12 @@ app.use("/api/activities", activities);
 
 app.use("/api/users", users);
 
-//DB conection
-const mongoURI =
-  "mongodb+srv://leonardo:leonardo@mytinerarycluster-x4qry.mongodb.net/mytinerary?retryWrites=true&w=majority";
-
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+  .connect(dbUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 

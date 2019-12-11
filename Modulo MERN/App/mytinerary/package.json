@@ -11,11 +11,14 @@
   "author": "Leonardo Sanchez",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-validator": "^6.3.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.7",
-    "nodemon": "^2.0.0"
+    "nodemon": "^2.0.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.0.0"

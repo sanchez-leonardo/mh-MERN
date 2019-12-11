@@ -43,9 +43,8 @@ class SignUp extends Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
 
     if (target.type === "checkbox") {
-      this.setState({ [name]: value })
+      this.setState({ [name]: value });
     } else {
-
       this.setState({
         formData: {
           ...this.state.formData,
@@ -60,29 +59,27 @@ class SignUp extends Component {
     const name = target.name;
     const value = target.value;
 
-    const { required } = this.state
+    const { required } = this.state;
 
     if (name === "userEmail") {
-
-      required[name] = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "complete" : "empty"
-
+      required[name] = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+        ? "complete"
+        : "empty";
     } else {
-
       if (value.length < 6) {
-        required[name] = "empty"
+        required[name] = "empty";
       } else {
-        required[name] = "complete"
+        required[name] = "complete";
       }
-
     }
 
-    this.setState({ required })
+    this.setState({ required });
   }
 
   submitForm(evt) {
-    evt.preventDefault()
+    evt.preventDefault();
 
-    this.props.signUpUser(this.state.formData)
+    this.props.signUpUser(this.state.formData);
   }
 
   render() {
@@ -229,7 +226,6 @@ SignUp.propTypes = {
   signUpUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, { signUpUser })(SignUp);
