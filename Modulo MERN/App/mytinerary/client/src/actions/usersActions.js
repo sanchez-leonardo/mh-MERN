@@ -1,6 +1,7 @@
 import {
-  // LOG_IN_USER,
-  USER_LOADING
+  LOG_USER_IN,
+  CLEAR_USER_DATA,
+  SET_USER_LOADING
 } from "../actions/types";
 
 export const signUpUser = formData => dispatch => {
@@ -13,34 +14,60 @@ export const signUpUser = formData => dispatch => {
   };
 
   fetch("/api/users", init)
-    .then(response => response.json())
-    .then(data => console.log(data))
+    .then(response => {
+      if (response.ok) {
+        dispatch(
+          logInUser({
+            userEmail: formData.userEmail,
+            userPassword: formData.userPassword
+          })
+        );
+      } else {
+        response.json().then(data => console.log(data));
+      }
+    })
     .catch(error => console.log(error));
 };
 
-// export const logInUser = async (formData) => dispatch => {
+export const logInUser = formData => dispatch => {
+  dispatch(setUserLoading());
 
-//   let body = new URLSearchParams(formData);
+  let body = new URLSearchParams(formData);
 
-//   let init = {
-//     method: "POST",
-//     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//     body
-//   };
-
-//   try {
-
-//     fetch("/api/login", init);
-
-//   }
-//   catch (e) {
-//     console.log(e)
-//   }
-
-// }
-
-export const setUserLoading = () => {
-  return {
-    type: USER_LOADING
+  let init = {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body
   };
+
+  fetch("/api/users/login", init)
+    .then(response => {
+      if (response.ok) {
+        response.json().then(data => {
+          console.log(data);
+
+          window.localStorage.setItem("mytinerarytoken", data.token);
+
+          dispatch({
+            type: LOG_USER_IN,
+            payload: data.user
+          });
+        });
+      }
+    })
+    .catch(error => console.log(error));
+};
+
+export const logUserOut = () => dispatch => {
+  dispatch({
+    type: CLEAR_USER_DATA
+  });
+
+  window.localStorage.removeItem("mytinerarytoken");
+};
+
+export const setUserLoading = () => dispatch => {
+  dispatch({
+    type: SET_USER_LOADING
+  });
 };

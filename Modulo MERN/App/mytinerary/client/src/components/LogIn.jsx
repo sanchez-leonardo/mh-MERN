@@ -2,6 +2,11 @@ import React, { Component } from "react";
 
 import { NavLink } from "react-router-dom";
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { logInUser } from "../actions/usersActions";
+
 import {
   Container,
   Row,
@@ -14,11 +19,80 @@ import {
 } from "reactstrap";
 
 class LogIn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formData: {
+        userPassword: "",
+        userEmail: ""
+      },
+      required: {
+        userPassword: "",
+        userEmail: ""
+      }
+    };
+  }
+
+  handleInputValue(evt) {
+    const target = evt.target;
+    const name = target.name;
+    const value = target.value;
+
+    if (target.type === "checkbox") {
+      this.setState({ [name]: value });
+    } else {
+      this.setState({
+        formData: {
+          ...this.state.formData,
+          [name]: value
+        }
+      });
+    }
+  }
+
+  requiredField(evt) {
+    const target = evt.target;
+    const name = target.name;
+    const value = target.value;
+
+    const { required } = this.state;
+
+    if (name === "userEmail") {
+      required[name] = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+        ? "complete"
+        : "empty";
+    } else {
+      if (value.length < 6) {
+        required[name] = "empty";
+      } else {
+        required[name] = "complete";
+      }
+    }
+
+    this.setState({ required });
+  }
+
+  submitForm(evt) {
+    evt.preventDefault();
+
+    this.props.logInUser(this.state.formData);
+
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        userName: "",
+        userPassword: ""
+      }
+    });
+
+    this.props.history.push("/");
+  }
+
   render() {
     return (
       <Container>
         <h1 className="text-center">Log In</h1>
-        <Form>
+        <Form onSubmit={e => this.submitForm(e)}>
           <FormGroup>
             <Label for="userEmail">Email</Label>
             <Input
@@ -26,6 +100,12 @@ class LogIn extends Component {
               name="userEmail"
               id="userEmail"
               placeholder="example@something.com"
+              onChange={e => {
+                this.handleInputValue(e);
+                this.requiredField(e);
+              }}
+              valid={this.state.required.userEmail === "complete"}
+              invalid={this.state.required.userEmail === "empty"}
             />
           </FormGroup>
           <FormGroup>
@@ -35,6 +115,12 @@ class LogIn extends Component {
               name="userPassword"
               id="userPassword"
               placeholder="6 digits or more"
+              onChange={e => {
+                this.handleInputValue(e);
+                this.requiredField(e);
+              }}
+              valid={this.state.required.userPassword === "complete"}
+              invalid={this.state.required.userPassword === "empty"}
             />
           </FormGroup>
           <FormGroup className="text-center">
@@ -45,7 +131,12 @@ class LogIn extends Component {
         </Form>
         <Row className="mt-5">
           <Col xs="12">
-            <a href="http://localhost:3030/api/users/login/google" className="text-center">Google fo' sho'</a>
+            <a
+              href="http://localhost:3030/api/users/login/google"
+              className="text-center"
+            >
+              Google fo' sho'
+            </a>
           </Col>
           <Col xs="12">
             <p className="text-center">Facebook maybe</p>
@@ -66,4 +157,12 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+LogIn.propTypes = {
+  logInUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  loggedUser: state.user.logged
+});
+
+export default connect(mapStateToProps, { logInUser })(LogIn);
