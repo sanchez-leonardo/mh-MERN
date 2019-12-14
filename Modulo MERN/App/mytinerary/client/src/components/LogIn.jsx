@@ -45,7 +45,7 @@ class LogIn extends Component {
         </Form>
         <Row className="mt-5">
           <Col xs="12">
-            <p className="text-center">Google fo' sho'</p>
+            <a href="http://localhost:3030/api/users/login/google" className="text-center">Google fo' sho'</a>
           </Col>
           <Col xs="12">
             <p className="text-center">Facebook maybe</p>

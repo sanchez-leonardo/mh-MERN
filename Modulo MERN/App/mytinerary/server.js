@@ -13,8 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Passport middleware initialisation
+require("./passport/JWTStrat").jwt;
+require("./passport/JWTStrat").google;
 app.use(passport.initialize());
-require("./passport/JWTStrat");
 
 //Route files
 const test = require("./router/routeTest");
