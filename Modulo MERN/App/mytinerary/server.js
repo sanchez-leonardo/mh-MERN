@@ -18,15 +18,12 @@ require("./passport/JWTStrat").google;
 app.use(passport.initialize());
 
 //Route files
-const test = require("./router/routeTest");
 const cities = require("./router/routeCities");
 const itineraries = require("./router/routeitIneraries");
 const activities = require("./router/routeActivities");
 const users = require("./router/routeUser");
 
 //Router routes
-app.use("/api/test", test);
-
 app.use("/api/cities", cities);
 
 app.use("/api/itineraries", itineraries);

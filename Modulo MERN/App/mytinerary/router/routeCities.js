@@ -1,7 +1,7 @@
 //Base modules
 const express = require("express");
 const router = express.Router();
-//Model (if needed)
+//Model
 const City = require("../models/schemaCity");
 
 //  GET
@@ -22,17 +22,23 @@ router.get("/:city", (req, res) => {
   City.find(cityId).then(city => res.json(city));
 });
 
-//TBA Fails to get body elements, body parser needed?
 //  POST
 //  /cities
 //  Adds a city
-router.post("/:city", (req, res) => {
-  const newCity = new City({
-    city: req.body.city,
+router.post("/", (req, res) => {
+  const newCity = new cityModel({
+    name: req.body.name,
     country: req.body.country
   });
 
-  newCity.save();
+  newCity
+    .save()
+    .then(city => {
+      res.status(201).json(city);
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Server error" });
+    });
 });
 
 module.exports = router;

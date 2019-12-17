@@ -38,16 +38,12 @@ class LogIn extends Component {
     const name = target.name;
     const value = target.value;
 
-    if (target.type === "checkbox") {
-      this.setState({ [name]: value });
-    } else {
-      this.setState({
-        formData: {
-          ...this.state.formData,
-          [name]: value
-        }
-      });
-    }
+    this.setState({
+      formData: {
+        ...this.state.formData,
+        [name]: value
+      }
+    });
   }
 
   requiredField(evt) {
@@ -158,7 +154,8 @@ class LogIn extends Component {
 }
 
 LogIn.propTypes = {
-  logInUser: PropTypes.func.isRequired
+  logInUser: PropTypes.func.isRequired,
+  loggedUser: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

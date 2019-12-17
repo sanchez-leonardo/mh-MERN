@@ -15,11 +15,6 @@ import Cities from "./components/Cities";
 import Itineraries from "./components/Itineraries";
 
 class App extends Component {
-  componentDidMount() {
-    if (window.localStorage.getItem("mytinerarytoken")) {
-    }
-  }
-
   render() {
     return (
       <Provider store={store}>

@@ -1,4 +1,5 @@
 //Base modules
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
@@ -126,9 +127,7 @@ router.get(
     failureRedirect: "/"
   }),
   async function(req, res) {
-    //console.log('User with google', req.user)
     // Successful authentication, redirect home.
-    //Crear pagina de carga para pasar token por url y realizar el pedido a backend
     try {
       const payload = {
         userId: req.user._id,
@@ -140,11 +139,22 @@ router.get(
 
       const token = await jwt.sign(payload, jwtSecretThing, options);
 
-      res.redirect(`http://localhost:3000/log-in/${token}`);
+      res.redirect(`http://localhost:3000/?token=${token}`);
     } catch (error) {
-      console.log(error);
+      res.redirect(`http://localhost:3000/?error=500`);
     }
   }
 );
+
+// GET
+// /:userId/favs
+// Returns user's favourite itineraries
+router.get("/:userId/favs", async (req, res) => {
+  const userId = mongoose.Types.ObjectId(req.params.userId);
+
+  const user = await User.find({ _id: userId });
+
+  res.status(200).json(user);
+});
 
 module.exports = router;

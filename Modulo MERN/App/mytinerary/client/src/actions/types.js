@@ -13,5 +13,6 @@ export const ACTIVITIES_LOADING = "ITINERARIES_LOADING";
 
 //Users Actions
 export const LOG_USER_IN = "LOG_USER_IN";
+export const STORE_USER_FROM_TOKEN = "STORE_USER_FROM_TOKEN";
 export const CLEAR_USER_DATA = "CLEAR_USER_DATA";
 export const SET_USER_LOADING = "USER_LOADING";

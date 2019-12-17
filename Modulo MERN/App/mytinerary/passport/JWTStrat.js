@@ -40,22 +40,21 @@ exports.google = passport.use(
       callbackURL: "http://localhost:3030/api/users/login/google/callback"
     },
     async function(accessToken, refreshToken, profile, cb) {
-      //console.log('profile Google', profile)
       try {
-        const userRequired = await User.findOne({
+        const googleUser = await User.findOne({
           userEmail: profile.emails[0].value
         }).select("-userPassword");
 
-        if (!userRequired) {
-          const userCreated = await User.create({
+        if (!googleUser) {
+          const newGoogleUser = await User.create({
             userName: profile.displayName,
-            userPassword: profile.id,
-            userEmail: profile.emails[0].value
+            userEmail: profile.emails[0].value,
+            userGoogleId: profile.id
           });
-          delete userCreated.userPassword;
-          cb(null, userCreated);
+          delete newGoogleUser.userPassword;
+          cb(null, newGoogleUser);
         }
-        return cb(null, userRequired);
+        return cb(null, googleUser);
       } catch (error) {
         console.log(error);
         cb(error, null);

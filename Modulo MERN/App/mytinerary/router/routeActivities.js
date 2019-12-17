@@ -1,10 +1,8 @@
 //Base modules
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
-
-const mongoose = require("mongoose");
-
-//Model (if needed)
+//Model
 const Activities = require("../models/schemaActivity");
 
 //  GET

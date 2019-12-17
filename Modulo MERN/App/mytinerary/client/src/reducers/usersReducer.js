@@ -1,5 +1,6 @@
 import {
   LOG_USER_IN,
+  STORE_USER_FROM_TOKEN,
   CLEAR_USER_DATA,
   SET_USER_LOADING
 } from "../actions/types";
@@ -7,6 +8,7 @@ import {
 const initState = {
   logged: false,
   user: {},
+  currentToken: "",
   loading: false
 };
 
@@ -16,7 +18,17 @@ export default function(state = initState, action) {
       return {
         ...state,
         logged: true,
-        user: action.payload,
+        user: action.payload.user,
+        currentToken: action.payload.token,
+        loading: false
+      };
+
+    case STORE_USER_FROM_TOKEN:
+      return {
+        ...state,
+        logged: true,
+        user: action.payload.user,
+        currentToken: action.payload.token,
         loading: false
       };
 
@@ -25,6 +37,7 @@ export default function(state = initState, action) {
         ...state,
         logged: false,
         user: {},
+        currentToken: "",
         loading: false
       };
 

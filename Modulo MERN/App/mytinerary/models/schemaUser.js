@@ -3,17 +3,16 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   userName: { type: String, required: true, unique: true },
-  userPassword: { type: String, required: true },
+  userPassword: { type: String, required: !this.userGoogleId == null },
   userEmail: {
     type: String,
-    required: () => {
-      this.userGoogleId == null;
-    }
+    required: true
   },
-  userFirstName: { type: String },
-  userLastName: { type: String },
-  userCountry: { type: String },
-  userGoogleId: { type: String }
+  userFirstName: { type: String, required: false },
+  userLastName: { type: String, required: false },
+  userCountry: { type: String, required: false },
+  userGoogleId: { type: String, required: false },
+  userFavs: { type: [Schema.Types.ObjectId], ref: "itinerary", required: false }
 });
 
 const user = mongoose.model("user", userSchema, "users");
