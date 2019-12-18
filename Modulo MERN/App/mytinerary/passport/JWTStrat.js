@@ -11,19 +11,18 @@ const ExtractJwt = require("passport-jwt").ExtractJwt;
 const jwtSecretKey = require("../config_keys").jwtSecretKey;
 const googleIds = require("../config_keys").googleThings;
 
-const opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = jwtSecretKey;
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: jwtSecretKey
+};
 
 exports.jwt = passport.use(
   new JwtStrategy(opts, async (jwt_payload, done) => {
     try {
-      const newUser = await User.findById(jwt_payload.id);
+      const user = await User.findById(jwt_payload.userId).select("-userPassword");
 
-      console.log(newUser);
-
-      if (newUser) {
-        return done(null, newUser);
+      if (user) {
+        return done(null, user);
       }
       return done(null, false);
     } catch (error) {
@@ -39,7 +38,7 @@ exports.google = passport.use(
       clientSecret: googleIds.clientSecret,
       callbackURL: "http://localhost:3030/api/users/login/google/callback"
     },
-    async function(accessToken, refreshToken, profile, cb) {
+    async function (accessToken, refreshToken, profile, cb) {
       try {
         const googleUser = await User.findOne({
           userEmail: profile.emails[0].value

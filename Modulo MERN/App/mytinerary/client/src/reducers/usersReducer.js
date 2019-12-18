@@ -1,5 +1,4 @@
 import {
-  LOG_USER_IN,
   STORE_USER_FROM_TOKEN,
   CLEAR_USER_DATA,
   SET_USER_LOADING
@@ -12,16 +11,8 @@ const initState = {
   loading: false
 };
 
-export default function(state = initState, action) {
+export default function (state = initState, action) {
   switch (action.type) {
-    case LOG_USER_IN:
-      return {
-        ...state,
-        logged: true,
-        user: action.payload.user,
-        currentToken: action.payload.token,
-        loading: false
-      };
 
     case STORE_USER_FROM_TOKEN:
       return {

@@ -1,5 +1,4 @@
 import {
-  LOG_USER_IN,
   STORE_USER_FROM_TOKEN,
   CLEAR_USER_DATA,
   SET_USER_LOADING
@@ -49,10 +48,9 @@ export const logInUser = formData => dispatch => {
         response.json().then(data => {
           window.localStorage.setItem("mytinerarytoken", data.token);
 
-          dispatch({
-            type: LOG_USER_IN,
-            payload: data
-          });
+          dispatch(
+            storeUserFromToken(data.token)
+          );
         });
       }
     })
@@ -63,16 +61,22 @@ export const storeUserFromToken = token => dispatch => {
   dispatch(setUserLoading());
 
   const decodedToken = JwtDecode(token);
+  console.log(decodedToken.userId)
 
-  const userData = {
-    token,
-    user: decodedToken
-  };
+  fetch(`/api/users/${decodedToken.userId}`, { headers: { Authorization: `bearer ${token}`, 'Content-Type': 'application/json' } })
+    .then(response => response.json())
+    .then(data => {
+      const userData = {
+        token,
+        user: data
+      };
 
-  dispatch({
-    type: STORE_USER_FROM_TOKEN,
-    payload: userData
-  });
+      dispatch({
+        type: STORE_USER_FROM_TOKEN,
+        payload: userData
+      });
+    }).catch(error => console.log(error))
+
 };
 
 export const logUserOut = () => dispatch => {

@@ -4,8 +4,10 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-//Model (if needed)
+//Model
 const User = require("../models/schemaUser");
+//For Favs
+const ItinerarySchema = require("../models/schemaItinerary")
 
 //express-validator methods
 const {
@@ -55,7 +57,7 @@ router.post("/", userCreationRules(), validate, async (req, res) => {
 
 //POST
 // /login
-// Generates a Token with the ID and name of User
+// Generates a Token with the ID, name and email
 router.post("/login", userLoginRules(), validate, async (req, res) => {
   try {
     const user = await User.findOne({ userEmail: req.body.userEmail });
@@ -92,12 +94,13 @@ router.post("/login", userLoginRules(), validate, async (req, res) => {
           }
 
           return res.status(200).json({
-            token: token,
-            user: {
-              userId: user._id,
-              userName: user.userName,
-              userEmail: user.userEmail
-            }
+            token: token
+            // ,
+            // user: {
+            //   userId: user._id,
+            //   userName: user.userName,
+            //   userEmail: user.userEmail
+            // }
           });
         });
       }
@@ -126,7 +129,7 @@ router.get(
     session: false,
     failureRedirect: "/"
   }),
-  async function(req, res) {
+  async function (req, res) {
     // Successful authentication, redirect home.
     try {
       const payload = {
@@ -147,14 +150,25 @@ router.get(
 );
 
 // GET
-// /:userId/favs
-// Returns user's favourite itineraries
-router.get("/:userId/favs", async (req, res) => {
-  const userId = mongoose.Types.ObjectId(req.params.userId);
+// /:userId *Auth needed*
+// Returns a particular user's info
+router.get("/:userId", passport.authenticate("jwt", { session: false }), async (req, res) => {
 
-  const user = await User.find({ _id: userId });
+  try {
+    const userId = mongoose.Types.ObjectId(req.params.userId);
 
-  res.status(200).json(user);
+    const user = await User.findOne({ _id: userId })
+      .select("-userPassword")
+      .populate({ path: "userFavs", model: ItinerarySchema });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error)
+  }
+
 });
+
+
+
 
 module.exports = router;
