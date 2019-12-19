@@ -29,18 +29,17 @@ class NavBar extends Component {
   toggleNavbar = () =>
     this.setState({ ...this.state, collapsed: !this.state.collapsed });
 
-  componentDidMount() {
+  async componentDidMount() {
     if (this.getQueryVariable("token")) {
       window.localStorage.setItem(
         "mytinerarytoken",
         this.getQueryVariable("token")
       );
-
       window.location.search = "";
     }
 
     if (window.localStorage.getItem("mytinerarytoken")) {
-      this.props.storeUserFromToken(
+      await this.props.storeUserFromToken(
         window.localStorage.getItem("mytinerarytoken")
       );
     }
@@ -87,7 +86,8 @@ NavBar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userName: state.user.user.userName
+  userName: state.user.user.userName,
+  loggedUser: state.user.logged
 });
 
 export default connect(mapStateToProps, { storeUserFromToken })(NavBar);

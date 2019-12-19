@@ -1,24 +1,32 @@
 import {
+  SET_USER_LOADING,
   STORE_USER_FROM_TOKEN,
   CLEAR_USER_DATA,
-  SET_USER_LOADING
+  LIKE_OR_DISLIKE
 } from "../actions/types";
 
 const initState = {
   logged: false,
   user: {},
+  userFavs: [],
   currentToken: "",
   loading: false
 };
 
-export default function (state = initState, action) {
+export default function(state = initState, action) {
   switch (action.type) {
-
     case STORE_USER_FROM_TOKEN:
+      let user = {
+        userId: action.payload.user._id,
+        userName: action.payload.user.userName,
+        userEmail: action.payload.user.userEmail
+      };
+
       return {
         ...state,
         logged: true,
-        user: action.payload.user,
+        user,
+        userFavs: action.payload.user.userFavs,
         currentToken: action.payload.token,
         loading: false
       };
@@ -29,6 +37,14 @@ export default function (state = initState, action) {
         logged: false,
         user: {},
         currentToken: "",
+        loading: false
+      };
+
+    case LIKE_OR_DISLIKE:
+      console.log("state  " + action.payload);
+      return {
+        ...state,
+        userFavs: action.payload,
         loading: false
       };
 

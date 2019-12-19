@@ -19,7 +19,9 @@ const opts = {
 exports.jwt = passport.use(
   new JwtStrategy(opts, async (jwt_payload, done) => {
     try {
-      const user = await User.findById(jwt_payload.userId).select("-userPassword");
+      const user = await User.findById(jwt_payload.userId).select(
+        "-userPassword"
+      );
 
       if (user) {
         return done(null, user);
@@ -38,7 +40,7 @@ exports.google = passport.use(
       clientSecret: googleIds.clientSecret,
       callbackURL: "http://localhost:3030/api/users/login/google/callback"
     },
-    async function (accessToken, refreshToken, profile, cb) {
+    async function(accessToken, refreshToken, profile, cb) {
       try {
         const googleUser = await User.findOne({
           userEmail: profile.emails[0].value

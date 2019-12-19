@@ -6,81 +6,143 @@ import {
   UncontrolledCollapse,
   Card,
   CardBody,
-  CardHeader
+  CardHeader,
+  CardFooter,
+  Button
 } from "reactstrap";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { getActivitiesByItinerary } from "../actions/activitiesActions";
+import { likeItinerary, dislikeItinerary } from "../actions/usersActions";
 
 import ActivitiesSlider from "./ActivitiesSlider";
 
 class CollapsibleItinerary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fav: false
+    };
+  }
+
+  componentDidMount() {
+    this.isFav();
+  }
+
+  loadActivities = () => {
+    if (!this.props.activities[this.props.itinerary._id]) {
+      this.props.getActivitiesByItinerary(this.props.itinerary._id);
+    }
+  };
+
+  isFav = () => {
+    let favouritesId = this.props.userFavs.map(fav => fav._id);
+
+    if (favouritesId.includes(this.props.itinerary._id)) {
+      this.setState({ ...this.state, fav: true });
+    } else {
+      this.setState({ ...this.state, fav: false });
+    }
+  };
+
+  favouriteClickin = async () => {
+    this.isFav();
+
+    if (this.state.fav) {
+      await this.props.dislikeItinerary(
+        this.props.userId,
+        this.props.itinerary._id,
+        this.props.currentToken
+      );
+    } else {
+      await this.props.likeItinerary(
+        this.props.userId,
+        this.props.itinerary._id,
+        this.props.currentToken
+      );
+    }
+
+    this.isFav();
+  };
+
   render() {
     let imgStyle = {
       width: "90%"
     };
 
     return (
-      <Col xs="11">
+      <Col xs="12">
         <Card className="mt-2">
           <CardHeader>
             <Row>
-              <Col xs="4">
-                <img
-                  src={this.props.itinerary.profile_pic}
-                  alt="user profile pic"
-                  style={imgStyle}
-                />
-                <p className="text-nowrap">{this.props.itinerary.user}</p>
+              <Col className="text-center" xs="2">
+                <Button block color="primary" onClick={this.favouriteClickin}>
+                  F
+                </Button>
               </Col>
-              <Col xs="8">
-                <h6>{this.props.itinerary.title}</h6>
-                <Row>
-                  <Col>
-                    <p>{this.props.itinerary.rating + " likes"}</p>
-                  </Col>
-                  <Col>
-                    <p>{this.props.itinerary.duration + "hs"}</p>
-                  </Col>
-                  <Col>
-                    <p>{"$" + this.props.itinerary.total_price}</p>
-                  </Col>
-                </Row>
+              <Col xs="10" className="text-center">
+                <h5>{this.props.itinerary.title}</h5>
               </Col>
             </Row>
+
+            <Row noGutters>
+              <Col xs="auto">
+                <p>{this.props.itinerary.rating + "k likes"}</p>
+              </Col>
+              <Col xs="auto" className="mx-auto px-0">
+                <p>{this.props.itinerary.duration + "hs"}</p>
+              </Col>
+              <Col xs="auto" className="mx-auto px-0">
+                <p>{"$" + this.props.itinerary.total_price}</p>
+              </Col>
+            </Row>
+
             <Row>
               {this.props.itinerary.hashtags.map((hash, index) => {
                 return (
-                  <Col key={index}>
-                    <p className="font-weight-light">{"#" + hash + " "}</p>
+                  <Col xs="auto" className="mx-auto px-0" key={index}>
+                    <p className="font-weight-light my-0">{"#" + hash + " "}</p>
                   </Col>
                 );
               })}
             </Row>
           </CardHeader>
-          <CardBody>
-            <p
-              className="text-center"
+          <UncontrolledCollapse
+            toggler={"itinerary" + this.props.itinerary._id}
+            onEntering={this.loadActivities}
+          >
+            <CardBody>
+              <Row>
+                <Col xs="5">
+                  <img
+                    src={this.props.itinerary.profile_pic}
+                    alt="user profile pic"
+                    style={imgStyle}
+                  />
+                </Col>
+                <Col xs="7">
+                  <p className="text-nowrap">{this.props.itinerary.user}</p>
+                </Col>
+              </Row>
+
+              <ActivitiesSlider
+                activities={this.props.activities[this.props.itinerary._id]}
+              ></ActivitiesSlider>
+            </CardBody>
+          </UncontrolledCollapse>
+          <CardFooter className="m-0 p-0">
+            <Button
+              className="m-0 p-0"
+              color="secondary"
+              size="md"
+              block
               id={"itinerary" + this.props.itinerary._id}
-              onClick={() => {
-                this.props.getActivitiesByItinerary(this.props.itinerary._id);
-              }}
             >
               View the whole thing
-            </p>
-            <UncontrolledCollapse
-              toggler={"itinerary" + this.props.itinerary._id}
-            >
-              <h6>Activities</h6>
-              <ActivitiesSlider
-                activities={this.props.activities.activities.filter(
-                  activity => activity.itinerary === this.props.itinerar_id
-                )}
-              ></ActivitiesSlider>
-            </UncontrolledCollapse>
-          </CardBody>
+            </Button>
+          </CardFooter>
         </Card>
       </Col>
     );
@@ -88,13 +150,21 @@ class CollapsibleItinerary extends Component {
 }
 
 CollapsibleItinerary.propTypes = {
-  getActivitiesByItinerary: PropTypes.func.isRequired
+  getActivitiesByItinerary: PropTypes.func.isRequired,
+  likeItinerary: PropTypes.func.isRequired,
+  dislikeItinerary: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  activities: state.activities
+  activities: state.activities.activities,
+  userFavs: state.user.userFavs,
+  userId: state.user.user.userId,
+  userLoading: state.user.loading,
+  currentToken: state.user.currentToken
 });
 
-export default connect(mapStateToProps, { getActivitiesByItinerary })(
-  CollapsibleItinerary
-);
+export default connect(mapStateToProps, {
+  getActivitiesByItinerary,
+  likeItinerary,
+  dislikeItinerary
+})(CollapsibleItinerary);

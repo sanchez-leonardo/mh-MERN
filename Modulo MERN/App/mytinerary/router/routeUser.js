@@ -7,7 +7,7 @@ const passport = require("passport");
 //Model
 const User = require("../models/schemaUser");
 //For Favs
-const ItinerarySchema = require("../models/schemaItinerary")
+const ItinerarySchema = require("../models/schemaItinerary");
 
 //express-validator methods
 const {
@@ -36,9 +36,9 @@ router.post("/", userCreationRules(), validate, async (req, res) => {
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
+    let hashedPassword = await bcrypt.hash(req.body.userPassword, 10);
 
-    const newUser = new User({
+    let newUser = new User({
       userName: req.body.userName,
       userPassword: hashedPassword,
       userEmail: req.body.userEmail,
@@ -47,11 +47,11 @@ router.post("/", userCreationRules(), validate, async (req, res) => {
       userCountry: req.body.userCountry
     });
 
-    const user = await newUser.save();
+    let user = await newUser.save();
     return res.status(201).json({ userId: user._id, userName: user.userName });
   } catch (error) {
     console.log("Error: ", error);
-    return res.status(500).json(error);
+    return res.status(500).send(error);
   }
 });
 
@@ -60,7 +60,7 @@ router.post("/", userCreationRules(), validate, async (req, res) => {
 // Generates a Token with the ID, name and email
 router.post("/login", userLoginRules(), validate, async (req, res) => {
   try {
-    const user = await User.findOne({ userEmail: req.body.userEmail });
+    let user = await User.findOne({ userEmail: req.body.userEmail });
 
     if (!user) {
       return res.status(400).json({ error: "User does not exist" });
@@ -78,13 +78,13 @@ router.post("/login", userLoginRules(), validate, async (req, res) => {
           return res.status(400).json({ error: "Invalid Password" });
         }
 
-        const payload = {
+        let payload = {
           userId: user._id,
           userName: user.userName,
           userEmail: user.userEmail
         };
 
-        const options = { expiresIn: 43200 };
+        let options = { expiresIn: 43200 };
 
         jwt.sign(payload, jwtSecretThing, options, (error, token) => {
           if (error) {
@@ -95,12 +95,6 @@ router.post("/login", userLoginRules(), validate, async (req, res) => {
 
           return res.status(200).json({
             token: token
-            // ,
-            // user: {
-            //   userId: user._id,
-            //   userName: user.userName,
-            //   userEmail: user.userEmail
-            // }
           });
         });
       }
@@ -129,18 +123,18 @@ router.get(
     session: false,
     failureRedirect: "/"
   }),
-  async function (req, res) {
+  async function(req, res) {
     // Successful authentication, redirect home.
     try {
-      const payload = {
+      let payload = {
         userId: req.user._id,
         userName: req.user.userName,
         userEmail: req.user.userEmail
       };
 
-      const options = { expiresIn: 43200 };
+      let options = { expiresIn: 43200 };
 
-      const token = await jwt.sign(payload, jwtSecretThing, options);
+      let token = await jwt.sign(payload, jwtSecretThing, options);
 
       res.redirect(`http://localhost:3000/?token=${token}`);
     } catch (error) {
@@ -152,23 +146,90 @@ router.get(
 // GET
 // /:userId *Auth needed*
 // Returns a particular user's info
-router.get("/:userId", passport.authenticate("jwt", { session: false }), async (req, res) => {
+router.get(
+  "/:userId",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      let userId = mongoose.Types.ObjectId(req.params.userId);
 
-  try {
-    const userId = mongoose.Types.ObjectId(req.params.userId);
+      let user = await User.findOne({ _id: userId })
+        .select("-userPassword")
+        .populate({ path: "userFavs", model: ItinerarySchema });
 
-    const user = await User.findOne({ _id: userId })
-      .select("-userPassword")
-      .populate({ path: "userFavs", model: ItinerarySchema });
-
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(error)
+      res.status(200).json(user);
+    } catch (error) {
+      res.send(500).send(error);
+      console.log(error);
+    }
   }
+);
 
-});
+// POST
+// /:userId/addfav/:itineraryId *Auth needed*
+// Adds a user's favs
+router.post(
+  "/:userId/addFav/:itineraryId",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      let userId = mongoose.Types.ObjectId(req.params.userId);
+      let itineraryId = req.params.itineraryId;
 
+      let user = await User.findOne({ _id: userId }).select("-userPassword");
 
+      if (!user.userFavs.includes(itineraryId)) {
+        user.userFavs.push(itineraryId);
 
+        await user.save();
+
+        let updatedUser = await User.findOne({ _id: userId })
+          .select("-userPassword")
+          .populate({ path: "userFavs", model: ItinerarySchema });
+
+        res.status(200).json(updatedUser.userFavs);
+      } else {
+        res.status(400).json({ error: "element already in favs" });
+      }
+    } catch (error) {
+      res.send(500).send(error);
+      console.log(error);
+    }
+  }
+);
+
+// POST
+// /:userId/remfav/:itineraryId *Auth needed*
+// Removes a user's fav
+router.post(
+  "/:userId/remfav/:itineraryId",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      let userId = mongoose.Types.ObjectId(req.params.userId);
+      let itineraryId = req.params.itineraryId;
+
+      let user = await User.findOne({ _id: userId }).select("-userPassword");
+
+      if (user.userFavs.includes(itineraryId)) {
+        let newFavs = user.userFavs.filter(fav => fav != itineraryId);
+        user.userFavs = newFavs;
+
+        await user.save();
+
+        let updatedUser = await User.findOne({ _id: userId })
+          .select("-userPassword")
+          .populate({ path: "userFavs", model: ItinerarySchema });
+
+        res.status(200).json(updatedUser.userFavs);
+      } else {
+        res.status(400).json({ error: "element not in favs" });
+      }
+    } catch (error) {
+      res.send(500).send(error);
+      console.log(error);
+    }
+  }
+);
 
 module.exports = router;

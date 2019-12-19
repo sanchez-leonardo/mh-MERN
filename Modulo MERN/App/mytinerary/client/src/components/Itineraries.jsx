@@ -18,13 +18,13 @@ class Itineraries extends Component {
   render() {
     const cityName = this.props.match.params.cityName;
     const imgStyle = {
-      maxheight: "3rem"
+      width: "inherit"
     };
 
     return (
       <Container fluid>
-        <Row noGutters>
-          <Col xs="auto">
+        <Row>
+          <Col>
             <img
               style={imgStyle}
               className="itineraries-city-img"
@@ -53,12 +53,10 @@ class Itineraries extends Component {
 
 Itineraries.propTypes = {
   getItinerariesByCity: PropTypes.func.isRequired,
-  cities: PropTypes.object.isRequired,
   itineraries: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  cities: state.cities,
   itineraries: state.itineraries
 });
 

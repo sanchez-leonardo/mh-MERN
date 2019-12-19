@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { Row, Col } from "reactstrap";
 
-import CitiesCarousel from "./RSCarousel";
+import CitiesCarousel from "./CitiesCarousel";
 
 import Arrow from "../images/circled-right-2.png";
 import Logo from "../images/MYtineraryLogo.png";

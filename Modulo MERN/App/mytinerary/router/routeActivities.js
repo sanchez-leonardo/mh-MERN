@@ -6,15 +6,15 @@ const router = express.Router();
 const Activities = require("../models/schemaActivity");
 
 //  GET
-//  /itineraries
+//  /activities
 //  Returns all activities
 router.get("/", (req, res) => {
   Activities.find().then(activities => res.json(activities));
 });
 
 //  GET
-//  /itineraries/:Itineraryid
-//  Returns all itineraries
+//  /activities/:Itineraryid
+//  Returns an itinerary's activities
 router.get("/:itineraryId", (req, res) => {
   const itineraryId = mongoose.Types.ObjectId(req.params.itineraryId);
 

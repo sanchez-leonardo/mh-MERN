@@ -3,14 +3,17 @@ import {
   ACTIVITIES_LOADING
 } from "../actions/types";
 
-const initState = { activities: [], loading: false };
+const initState = { activities: {}, loading: false };
 
 export default function(state = initState, action) {
   switch (action.type) {
     case GET_ACTIVITIES_BY_ITINERARY:
       return {
         ...state,
-        activities: [...state.activities, ...action.payload],
+        activities: {
+          ...state.activities,
+          [action.payload.itineraryId]: action.payload.data
+        },
         loading: false
       };
 
