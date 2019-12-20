@@ -38,9 +38,7 @@ class CollapsibleItinerary extends Component {
   };
 
   isFav = () => {
-    let favouritesId = this.props.userFavs.map(fav => fav._id);
-
-    if (favouritesId.includes(this.props.itinerary._id)) {
+    if (this.props.userFavsIds.includes(this.props.itinerary._id)) {
       this.setState({ ...this.state, fav: true });
     } else {
       this.setState({ ...this.state, fav: false });
@@ -48,7 +46,6 @@ class CollapsibleItinerary extends Component {
   };
 
   favouriteClickin = async () => {
-    this.isFav();
 
     if (this.state.fav) {
       await this.props.dislikeItinerary(
@@ -67,6 +64,23 @@ class CollapsibleItinerary extends Component {
     this.isFav();
   };
 
+  btnPlusOrMinus = () => {
+    if (this.state.fav) {
+      return <span>-</span>
+    } else {
+      return <span>+</span>
+    }
+  }
+
+  btnColor = () => {
+    if (this.state.fav) {
+      return "danger"
+    } else {
+      return "success"
+    }
+  }
+
+
   render() {
     let imgStyle = {
       width: "90%"
@@ -77,9 +91,14 @@ class CollapsibleItinerary extends Component {
         <Card className="mt-2">
           <CardHeader>
             <Row>
-              <Col className="text-center" xs="2">
-                <Button block color="primary" onClick={this.favouriteClickin}>
-                  F
+              <Col className="text-center p-0 m-auto" xs="2">
+                <Button
+                  onClick={this.favouriteClickin}
+                  color={this.btnColor()}
+                  disabled={this.props.userLoading}
+                  block
+                >
+                  {this.btnPlusOrMinus()}
                 </Button>
               </Col>
               <Col xs="10" className="text-center">
@@ -157,7 +176,7 @@ CollapsibleItinerary.propTypes = {
 
 const mapStateToProps = state => ({
   activities: state.activities.activities,
-  userFavs: state.user.userFavs,
+  userFavsIds: state.user.userFavs.map(fav => fav._id),
   userId: state.user.user.userId,
   userLoading: state.user.loading,
   currentToken: state.user.currentToken

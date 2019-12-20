@@ -13,7 +13,7 @@ const initState = {
   loading: false
 };
 
-export default function(state = initState, action) {
+export default function (state = initState, action) {
   switch (action.type) {
     case STORE_USER_FROM_TOKEN:
       let user = {
@@ -41,7 +41,6 @@ export default function(state = initState, action) {
       };
 
     case LIKE_OR_DISLIKE:
-      console.log("state  " + action.payload);
       return {
         ...state,
         userFavs: action.payload,

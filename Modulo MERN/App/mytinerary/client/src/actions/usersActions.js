@@ -108,14 +108,11 @@ export const likeItinerary = (userId, itineraryId, token) => async dispatch => {
       }
     });
 
-    console.log("like", like);
-
     if (like.ok) {
       let newFavs = await like.json();
 
       dispatch({ type: LIKE_OR_DISLIKE, payload: newFavs });
 
-      console.log("newfavs", newFavs);
     }
   } catch (error) {
     console.log(error);
@@ -138,14 +135,10 @@ export const dislikeItinerary = (
       }
     });
 
-    console.log("dislike", dislike);
-
     if (dislike.ok) {
       let newFavs = await dislike.json();
 
       dispatch({ type: LIKE_OR_DISLIKE, payload: newFavs });
-
-      console.log("newfavs", newFavs);
     }
   } catch (error) {
     console.log(error);

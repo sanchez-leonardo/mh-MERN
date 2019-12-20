@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import LandingTabV2 from "./components/LandingTabV2";
 import Cities from "./components/Cities";
 import Itineraries from "./components/Itineraries";
+import UserFavItineraries from "./components/UserFavItineraries";
 
 class App extends Component {
   render() {
@@ -33,6 +34,7 @@ class App extends Component {
                   path="/itineraries/:cityId/:cityName"
                   component={Itineraries}
                 ></Route>
+                <Route path="/favourites" component={UserFavItineraries} />
               </Row>
               <Row tag="footer" className="fixed-bottom mh-10">
                 <Footer />

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -12,8 +13,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink
+  NavItem
 } from "reactstrap";
 
 import UserMenu from "./UserMenu";
@@ -70,8 +70,8 @@ class NavBar extends Component {
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
-              <NavItem>
-                <NavLink href="#">Favourite Itineraries</NavLink>
+              <NavItem tag="h4" className="text-center" >
+                <NavLink to="/favourites">Favourite Itineraries</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

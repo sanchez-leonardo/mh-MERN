@@ -10,7 +10,7 @@ import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 import UserIcon from "../images/user.png";
 
-const UserMenu = props => {
+const UserMenu = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const toggle = () => setPopoverOpen(!popoverOpen);
