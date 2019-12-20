@@ -31,6 +31,15 @@ class CollapsibleItinerary extends Component {
     this.isFav();
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.userFavsIds.includes(this.props.itinerary._id) !==
+      this.props.userFavsIds.includes(this.props.itinerary._id)
+    ) {
+      this.isFav();
+    }
+  }
+
   loadActivities = () => {
     if (!this.props.activities[this.props.itinerary._id]) {
       this.props.getActivitiesByItinerary(this.props.itinerary._id);
@@ -46,7 +55,6 @@ class CollapsibleItinerary extends Component {
   };
 
   favouriteClickin = async () => {
-
     if (this.state.fav) {
       await this.props.dislikeItinerary(
         this.props.userId,
@@ -60,26 +68,23 @@ class CollapsibleItinerary extends Component {
         this.props.currentToken
       );
     }
-
-    this.isFav();
   };
 
   btnPlusOrMinus = () => {
     if (this.state.fav) {
-      return <span>-</span>
+      return <span>-</span>;
     } else {
-      return <span>+</span>
+      return <span>+</span>;
     }
-  }
+  };
 
   btnColor = () => {
     if (this.state.fav) {
-      return "danger"
+      return "danger";
     } else {
-      return "success"
+      return "success";
     }
-  }
-
+  };
 
   render() {
     let imgStyle = {

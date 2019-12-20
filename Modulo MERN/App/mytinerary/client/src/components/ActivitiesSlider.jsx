@@ -11,15 +11,15 @@ class ActivitiesSlider extends Component {
     slidesToScroll: 1
   };
 
-  componentDidUpdate() {
-    // console.log(this.props.activities);
-  }
-
   slides = () => {
-    if (this.props.activities.lenght) {
-      return this.props.activities.map(activity => <p>{activity.title}</p>);
+    if (this.props.activities) {
+      return this.props.activities.map(activity => (
+        <p key={activity._id} className="text-center">
+          {activity.title}
+        </p>
+      ));
     } else {
-      return <p>No activities in this itinerary</p>;
+      return <p className="text-center">No activities in this itinerary</p>;
     }
   };
 
@@ -30,7 +30,7 @@ class ActivitiesSlider extends Component {
           <h5>Activities</h5>
         </Col>
         <Col xs="12">
-          <Slider {...this.settings}>{this.slides}</Slider>
+          <Slider {...this.settings}>{this.slides()}</Slider>
         </Col>
       </Row>
     );
