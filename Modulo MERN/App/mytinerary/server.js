@@ -22,6 +22,7 @@ const cities = require("./router/routeCities");
 const itineraries = require("./router/routeitIneraries");
 const activities = require("./router/routeActivities");
 const users = require("./router/routeUser");
+const chats = require("./router/routeChats");
 
 //Router routes
 app.use("/api/cities", cities);
@@ -31,6 +32,8 @@ app.use("/api/itineraries", itineraries);
 app.use("/api/activities", activities);
 
 app.use("/api/users", users);
+
+app.use("/api/chats", chats);
 
 mongoose
   .connect(dbUri, {

@@ -7,7 +7,7 @@ const passport = require("passport");
 //Model
 const User = require("../models/schemaUser");
 //For Favs
-const ItinerarySchema = require("../models/schemaItinerary");
+const Itinerary = require("../models/schemaItinerary");
 
 //express-validator methods
 const {
@@ -155,7 +155,7 @@ router.get(
 
       let user = await User.findOne({ _id: userId })
         .select("-userPassword")
-        .populate({ path: "userFavs", model: ItinerarySchema });
+        .populate({ path: "userFavs", model: Itinerary });
 
       res.status(200).json(user);
     } catch (error) {
@@ -185,7 +185,7 @@ router.post(
 
         let updatedUser = await User.findOne({ _id: userId })
           .select("-userPassword")
-          .populate({ path: "userFavs", model: ItinerarySchema });
+          .populate({ path: "userFavs", model: Itinerary });
 
         res.status(200).json(updatedUser.userFavs);
       } else {
@@ -219,7 +219,7 @@ router.post(
 
         let updatedUser = await User.findOne({ _id: userId })
           .select("-userPassword")
-          .populate({ path: "userFavs", model: ItinerarySchema });
+          .populate({ path: "userFavs", model: Itinerary });
 
         res.status(200).json(updatedUser.userFavs);
       } else {
